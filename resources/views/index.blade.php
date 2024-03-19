@@ -31,12 +31,12 @@
 
         @foreach ($products as $product)
             <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->details }}</td>
-                <td>{{ $product->category }}</td>
-                <td><img src="/images/{{ $product->product_image }}" width="150" /></td>
-                <td>{{ $product->price }}</td>
+                <td class="text-center">{{ ++$i }}</td>
+                <td class="text-center">{{ $product->name }}</td>
+                <td class="text-center">{{ $product->details }}</td>
+                <td class="text-center">{{ $product->category }}</td>
+                <td class=""><img src="/images/{{ $product->product_image }}" width="150" class="center" /></td>
+                <td class="text-center">Php {{ $product->price }}</td>
                 <td>
                     <form action="{{route('destroy', $product->id)}}" method="POST">
 

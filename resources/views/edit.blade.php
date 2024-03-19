@@ -38,7 +38,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Price: </strong>
-                <input type="text" name="price" value="{{ $product->price}}" class="form-control" placeholder="Price">
+                <input type="text" name="price" value="{{ $product->price}}" class="form-control" placeholder="Price ">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
