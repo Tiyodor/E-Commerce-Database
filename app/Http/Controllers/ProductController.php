@@ -36,6 +36,7 @@ class ProductController extends Controller
             'details' => 'required',
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category' => 'required',
+            'price' => 'required',
         ]);
 
         $input = $request->all();
@@ -81,7 +82,8 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'details' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'price' => 'required',
         ]);
 
         $input = $request->all();
