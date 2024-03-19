@@ -22,3 +22,7 @@ use App\Http\Controllers\ProductController;
  Route::get('/create', [ProductController::Class,'create'] )->name('product.store');
  Route::post('/store', [ProductController::Class, 'store'])->name('product.store');
  Route::get('/index', [ProductController::Class,'index'])->name('index');
+ Route::get('show/{product}', [ProductController::Class,'show'])->name('show');
+ Route::get('edit/{product}', [ProductController::Class,'edit'])->name('edit');
+ Route::put('edit/{product}', [ProductController::Class,'update'])->name('update');
+ Route::delete('/{product}', [ProductController::Class, 'destroy'])->name('destroy');
