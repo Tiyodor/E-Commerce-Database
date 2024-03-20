@@ -37,7 +37,7 @@
                 <td class="text-center">{{ $product->category }}</td>
                 <td class=""><img src="/images/{{ $product->product_image }}" width="150" class="center" /></td>
                 <td class="text-center">Php {{ $product->price }}</td>
-                <td>
+                <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
 
                         <a class="btn btn-info" href="{{route('show',$product->id)}}">Show</a>
