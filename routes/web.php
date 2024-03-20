@@ -21,7 +21,7 @@ use App\Http\Controllers\UserController;
 //});
 
 Route::get('/', function () {return view('home');});
-
+//product controller routes
  Route::get('/create', [ProductController::class,'create'] )->name('product.store');
  Route::post('/store', [ProductController::class, 'store'])->name('product.store');
  Route::get('/index', [ProductController::class,'index'])->name('index');
@@ -29,7 +29,7 @@ Route::get('/', function () {return view('home');});
  Route::get('edit/{product}', [ProductController::class,'edit'])->name('edit');
  Route::put('edit/{product}', [ProductController::class,'update'])->name('update');
  Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
-
+//user routes
  Route::get('/users', [UserController::class,'users'])->name('users');
  Route::get('/create_user', [UserController::class,'create_user'] )->name('user.store_user');
  Route::post('/store_user', [UserController::class, 'store_user'])->name('user.store_user');

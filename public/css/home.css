@@ -11,6 +11,7 @@
     padding: 20px;
     margin-bottom: 20px;
     margin-top: 30px;
+    border-radius: 5px;
 }
 
 /* Header styles */
@@ -18,5 +19,7 @@
 .user-container header {
     font-size: 20px;
     margin-bottom: 10px;
+    font-weight: bolder;
     text-align: center;
 }
+

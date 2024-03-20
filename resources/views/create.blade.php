@@ -42,7 +42,17 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Category:</strong>
-                <textarea class="form-control" style="height:150px" name="category" placeholder="category"></textarea>
+                 <select  name="category" class="form-control">
+                    <option value="SD">SD</option>
+                    <option value="EG">EG</option>
+                    <option value="HG">HG</option>
+                    <option value="MG">MG</option>
+                    <option value="PG">PG</option>
+                    <option value="HI-RES">HI-RES</option>
+                    <option value="1/100">1/100</option>
+
+
+                  </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
