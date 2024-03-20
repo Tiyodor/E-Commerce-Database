@@ -20,7 +20,8 @@ use App\Http\Controllers\UserController;
  //   return view('welcome');
 //});
 
- Route::get('/', [ProductController::class,'index'] );
+Route::get('/', function () {return view('home');});
+
  Route::get('/create', [ProductController::class,'create'] )->name('product.store');
  Route::post('/store', [ProductController::class, 'store'])->name('product.store');
  Route::get('/index', [ProductController::class,'index'])->name('index');

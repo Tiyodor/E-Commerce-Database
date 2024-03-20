@@ -36,7 +36,7 @@
                 <td class="text-center">{{ $user->email }}</td>
                 <td class="text-center">{{ $user->password }}</td>
                 <td class="text-center">
-                    <form action="{{ route('destroy', $user->id) }}" method="POST">
+                    <form action="{{route('destroy', $user->id)}}" method="POST">
                         <a class="btn btn-info" href="{{route('show_user',$user->id)}}">Show</a>
                         <a class="btn btn-primary" href="{{route('edit_user',$user->id)}}">Edit</a>
                         @csrf

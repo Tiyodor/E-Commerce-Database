@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Product and user container styles */
+.product-container,
+.user-container {
+    width: 48%; /* Adjust as needed */
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+/* Header styles */
+.product-container header,
+.user-container header {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}

@@ -3,6 +3,7 @@
 <head>
     <title>GundFactory</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -18,7 +19,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Inventory</a>
+          <a class="nav-link" href="{{ route('index')}}">Inventory</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Orders</a>
