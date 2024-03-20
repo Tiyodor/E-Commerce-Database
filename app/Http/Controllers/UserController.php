@@ -93,7 +93,7 @@ class UserController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy_user(User $user)
     {
         $user->delete();
 

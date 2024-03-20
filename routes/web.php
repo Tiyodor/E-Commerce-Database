@@ -36,4 +36,4 @@ Route::get('/', function () {return view('home');});
  Route::get('show_user/{user}', [UserController::class, 'show_user'])->name('show_user');
  Route::get('edit_user/{user}', [UserController::class,'edit_user'])->name('edit_user');
  Route::put('edit_user/{user}', [UserController::class,'update_user'])->name('update_user');
- Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('destroy');
+ Route::delete('/users/{user}', [UserController::class, 'destroy_user'])->name('destroy_user');
