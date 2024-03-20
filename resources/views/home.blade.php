@@ -8,38 +8,29 @@
     <div class="product-container">
         <header>Latest Products</header>
         <div class="contents">
-            <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name: </strong>
-                    {{$product->name}}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Details: </strong>
-                    {{$product->details}}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Category: </strong>
-                    {{$product->category}}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Product Image: </strong>
-                    <img src="/images/{{ $product->product_image }}" width="500px">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Price: </strong>
-                    {{$product->price}}
-                </div>
-            </div>
-        </div>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Category</th>
+                    <th>Product Image</th>
+                   <th>Price</th>
+                </tr>
+
+                @foreach ($products as $product)
+                    <tr>
+                        <td class="text-center">{{ ++$i }}</td>
+                        <td class="text-center">{{ $product->name }}</td>
+                        <td class="text-center">{{ $product->details }}</td>
+                        <td class="text-center">{{ $product->category }}</td>
+                        <td class=""><img src="/images/{{ $product->product_image }}" width="150" class="center" /></td>
+                        <td class="text-center">Php {{ $product->price }}</td>
+                    </tr>
+                @endforeach
+            </table>
+
     </div>
     <div class="user-container">
         <header>Users</header>
@@ -48,5 +39,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

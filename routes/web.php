@@ -25,6 +25,7 @@ Route::get('/', function () {return view('home');});
  Route::get('/create', [ProductController::class,'create'] )->name('product.store');
  Route::post('/store', [ProductController::class, 'store'])->name('product.store');
  Route::get('/index', [ProductController::class,'index'])->name('index');
+ Route::get('/home', [ProductController::class,'home'])->name('home');
  Route::get('show/{product}', [ProductController::class,'show'])->name('show');
  Route::get('edit/{product}', [ProductController::class,'edit'])->name('edit');
  Route::put('edit/{product}', [ProductController::class,'update'])->name('update');

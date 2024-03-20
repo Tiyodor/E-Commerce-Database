@@ -18,6 +18,14 @@ class ProductController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 4);
     }
 
+    public function home()
+    {
+        $products = Product::all();
+
+        return view('home', compact('products'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -116,4 +124,6 @@ class ProductController extends Controller
        return redirect()->route('index')
                         ->with('success', 'product remove');
     }
+
+
 }
