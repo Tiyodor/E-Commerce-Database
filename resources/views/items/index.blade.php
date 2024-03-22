@@ -43,13 +43,13 @@
                 <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
 
-                        <a class="btn btn-info" href="{{route('items.show',$product->id)}}">Show</a>
-                        <a class="btn btn-primary" href="{{route('items.edit',$product->id)}}">Edit</a>
+                        <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>
+                        <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>
 
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger"> Delete </button>
+                        <button type="submit" class="btn"> Delete </button>
                     </form>
                 </td>
             </tr>
@@ -57,9 +57,9 @@
         </tbody>
     </table>
 
-    <div class="d-flex justify-content-center">
-        {!! $products->previousPageUrl() ? '<a href="' . $products->previousPageUrl() . '" class="btn btn-primary mr-2 pr-2">&lt; Previous</a>' : '' !!}
-        {!! $products->nextPageUrl() ? '<a href="' . $products->nextPageUrl() . '" class="btn btn-primary">Next &gt;</a>' : '' !!}
+    <div class="btn">
+        {!! $products->previousPageUrl() ? '<a href="' . $products->previousPageUrl() . '" >&lt; Previous</a>' : '' !!}
+        {!! $products->nextPageUrl() ? '<a href="' . $products->nextPageUrl() . '" >Next &gt;</a>' : '' !!}
     </div>
         </div>
 @endsection

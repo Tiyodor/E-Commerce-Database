@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+    <div class="item-table">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -51,4 +52,5 @@
         {!! $users->previousPageUrl() ? '<a href="' . $users->previousPageUrl() . '" class="btn btn-primary mr-2 pr-2">&lt; Previous</a>' : '' !!}
         {!! $users->nextPageUrl() ? '<a href="' . $users->nextPageUrl() . '" class="btn btn-primary">Next &gt;</a>' : '' !!}
     </div>
+        </div>
 @endsection

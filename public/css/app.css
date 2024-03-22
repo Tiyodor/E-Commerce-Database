@@ -5,16 +5,22 @@
 
   /* Navbar styles */
    .navbar {
-    background-color: #f0f0f0;
+    background-color: rgba(255,255,255,0.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
     height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px;
+
+
 }
 
 body{
+    background-image: url("/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 
@@ -74,5 +80,37 @@ body{
 
 .item-table{
     table-layout: auto;
-    background-color: #c53030;
+    background-color: rgba(54, 42, 8, 0.315);
+    box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
+    display:grid ;
+    margin: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    align-content: center;
+    color: #fff;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    border-radius: 10px;
 }
+
+.btn {
+    background-color: #411234;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  button{
+    background-color: #411234;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    text-decoration: none;
+    display: inline-block;
+  }
