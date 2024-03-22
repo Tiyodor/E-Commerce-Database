@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -52,14 +53,14 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store_user(Request $request)
+    public function store_user(UserRequest $request)
     {
-        $request->validate([
-        'name' => 'required|string|max:255',
-        'address' => 'required|string|max:255',
-        'email' => 'required|email|unique:users|max:255',
-        'password' => 'required|string|min:8',
-        ]);
+        // $request->validate([
+        // 'name' => 'required|string|max:255',
+        // 'address' => 'required|string|max:255',
+        // 'email' => 'required|email|unique:users|max:255',
+        // 'password' => 'required|string|min:8',
+        // ]);
 
         $input = $request->all();
 
@@ -94,12 +95,12 @@ class UserController extends Controller
      */
     public function update_user(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|min:8',
-            ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'address' => 'required|string|max:255',
+        //     'email' => 'required|email|unique:users|max:255',
+        //     'password' => 'required|string|min:8',
+        //     ]);
 
             $input = $request->all();
 
