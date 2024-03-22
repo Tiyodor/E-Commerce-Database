@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+<div class="item-table">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -18,7 +19,8 @@
             <p>{{$message}}</p>
         @endif
 
-    <table class="table table-bordered">
+    <table>
+        <thead>
         <tr>
             <th>No</th>
             <th>Name</th>
@@ -28,7 +30,8 @@
            <th>Price</th>
             <th width="280px">Action</th>
         </tr>
-
+        </thead>
+        <tbody>
         @foreach ($products as $product)
             <tr>
                 <td class="text-center">{{ ++$i }}</td>
@@ -51,10 +54,12 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
 
     <div class="d-flex justify-content-center">
         {!! $products->previousPageUrl() ? '<a href="' . $products->previousPageUrl() . '" class="btn btn-primary mr-2 pr-2">&lt; Previous</a>' : '' !!}
         {!! $products->nextPageUrl() ? '<a href="' . $products->nextPageUrl() . '" class="btn btn-primary">Next &gt;</a>' : '' !!}
     </div>
+        </div>
 @endsection
