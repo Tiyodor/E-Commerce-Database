@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,8 +15,11 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(4);
 
-        return view('index', compact('products'))
+        return view('items.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 4);
+
+
+        //if api, return response()->json(['data' => $products],200);
     }
 
     /**
@@ -23,21 +27,21 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('items.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'details' => 'required',
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'category' => 'required|in:SD,EG,HG,MG,PG,HI-RES,1/100',
-            'price' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'details' => 'required',
+        //     'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        //     'category' => 'required|in:SD,EG,HG,RG,MG,PG,HI-RES,1/100',
+        //     'price' => 'required',
+        // ]);
 
         $input = $request->all();
 
@@ -50,7 +54,7 @@ class ProductController extends Controller
 
         Product::create($input);
 
-        return redirect()->route('index')
+        return redirect()->route('items.index')
                         ->with('success', 'Product Created Successfully');
     }
 
@@ -59,7 +63,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-       return view('show' ,compact('product'));
+       return view('items.show' ,compact('product'));
     }
 
     /**
@@ -67,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('edit',compact('product'));
+        return view('items.edit',compact('product'));
     }
 
     /**
@@ -77,29 +81,25 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required',
-            'details' => 'required',
-            'category' => 'required',
-            'price' => 'required',
-        ]);
-
         $input = $request->all();
-
         if ($image = $request->file('product_image')) {
             $destinationPath = 'images/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['product_image'] = "$profileImage";
+
+
+            //delete old file in db after moving new file
+
         }else{
             unset($input['product_image']);
         }
 
         $product->update($input);
 
-        return redirect()->route('index')
+        return redirect()->route('items.index')
                         ->with('success','Product updated successfully');
     }
 
@@ -113,7 +113,7 @@ class ProductController extends Controller
     {
        $product->delete();
 
-       return redirect()->route('index')
+       return redirect()->route('items.index')
                         ->with('success', 'product remove');
     }
 

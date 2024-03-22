@@ -1,0 +1,72 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  /* Navbar styles */
+   .navbar {
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #e53e3e;
+    text-decoration: none;
+    font-family: "IM Fell Great Primer SC", serif;
+    font-weight: 1000;
+    font-size: 35px;
+    font-style: normal;
+    text-shadow: 2px 2px royalblue;
+    letter-spacing: 0.1em;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    left: 30px;
+    transform: 0;
+
+}
+
+.nav-item {
+    margin-right: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555;
+    font-size: 1.9rem;
+    font-family: "Bungee Hairline", sans-serif;
+  font-weight: 1000;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+/* Logout button style */
+.logout-btn {
+    background-color: #e53e3e;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: "Bungee Hairline", sans-serif;
+  font-weight: 1000;
+  font-style: normal;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c53030;
+}

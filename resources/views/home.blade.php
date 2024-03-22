@@ -9,7 +9,7 @@
         <header>Latest Products</header>
         <div class="contents">
 
-          
+
 
     </div>
     </div>
@@ -17,7 +17,15 @@
         <header>Users</header>
         <div class="contents">
 
-  
+
+
+        </div>
+    </div>
+    <div class="order-container">
+        <header>Order Info</header>
+        <div class="contents">
+
+
 
         </div>
     </div>

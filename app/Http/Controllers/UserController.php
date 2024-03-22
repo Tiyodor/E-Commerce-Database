@@ -8,6 +8,27 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    /*  format for controller action functions
+        index -> List of Users, return blade with data if WEB, return data only if API
+        create -> Page of create user, WEB only
+        edit -> Page of Edit User, WEB only
+        show -> Get Data of User, return blade with data if WEB, return data only if API
+        store -> Create User Function
+        update -> Update User Function
+        destroy -> Delete User Function
+
+        Custom Functions (Camel Case)
+        e.g. enableUser
+
+        Variables (snake)
+        e.g. $user_data
+
+        Properties & Methods of Class/Objects (Camel Case)
+        e.g. $class->userData
+    */
+
+
     /**
      * Display a listing of the resource.
      */
@@ -15,7 +36,7 @@ class UserController extends Controller
     {
         $users = User::latest()->paginate(10);
 
-        return view('users', compact('users'))
+        return view('user.users', compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -24,7 +45,7 @@ class UserController extends Controller
      */
     public function create_user()
     {
-        return view('create_user');
+        return view('user.create_user');
     }
 
 
@@ -44,7 +65,7 @@ class UserController extends Controller
 
         User::create($input);
 
-        return redirect()->route('users')
+        return redirect()->route('user.users')
                         ->with('success', 'User Created Successfully');
     }
 
@@ -53,7 +74,7 @@ class UserController extends Controller
      */
     public function show_user(User $user)
     {
-        return view('show_user', compact('user'));
+        return view('user.show_user', compact('user'));
     }
 
     /**
@@ -61,7 +82,7 @@ class UserController extends Controller
      */
     public function edit_user(User $user)
     {
-        return view('edit_user',compact('user'));
+        return view('user.edit_user',compact('user'));
     }
 
     /**
@@ -84,7 +105,7 @@ class UserController extends Controller
 
         $user->update($input);
 
-        return redirect()->route('users')
+        return redirect()->route('user.users')
                         ->with('success','User updated successfully');
     }
     /**
@@ -97,7 +118,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('users')
+        return redirect()->route('user.users')
                         ->with('success', 'User removed successfully');
     }
 }

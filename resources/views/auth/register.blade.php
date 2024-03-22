@@ -1,4 +1,3 @@
-<!-- resources/views/auth/register.blade.php -->
 @extends('app')
 
 @section('content')

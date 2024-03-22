@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>GundFactory</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Bungee+Shade&family=IM+Fell+Great+Primer+SC&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/home">GundFactory</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('index')}}">Inventory</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Orders</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('users') }}">Users</a>
-        </li>
-      </ul>
-      
-      <!-- Check if admin is logged in -->
-      @if(Auth::guard('admin')->check())
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <form method="POST" action="{{ route('admin.logout') }}">
-            @csrf
-            <button type="submit" class="btn btn-link nav-link">Logout</button>
-          </form>
-        </li>
-      </ul>
-      @endif
-      <!-- End of check -->
-    </div>
-  </div>
-</nav>
+    <nav class="navbar">
+        <a class="navbar-brand" href="/home">
+            GUND<span>FACTORY</span>
+        </a>
 
-<div class="container">
-    @yield('content')
-</div>
+
+        @if(Auth::guard('admin')->check())
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('items.index')}}">Inventory</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.users') }}">Users</a>
+                </li>
+            </ul>
+            <div>
+
+
+            <form method="POST" action="{{ route('admin.logout') }}">
+                @csrf
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+        @endif
+
+    </nav>
+
+    <div class="container mx-auto">
+        @yield('content')
+    </div>
+
 
 </body>
+
 </html>

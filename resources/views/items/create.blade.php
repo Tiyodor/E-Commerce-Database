@@ -7,7 +7,7 @@
             <h2>Add New Product</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url('/') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ url('/items/index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
     </div>
 @endif
 
-<form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('items.product.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
      <div class="row">
@@ -46,6 +46,7 @@
                     <option value="SD">SD</option>
                     <option value="EG">EG</option>
                     <option value="HG">HG</option>
+                    <option value="RG">RG</option>
                     <option value="MG">MG</option>
                     <option value="PG">PG</option>
                     <option value="HI-RES">HI-RES</option>

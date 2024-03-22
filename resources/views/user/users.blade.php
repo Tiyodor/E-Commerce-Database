@@ -7,7 +7,7 @@
                 <h2>User Management</h2>
             </div>
             <div class="pull-right" style="margin-bottom:10px;">
-                <a class="btn btn-success" href="create_user">Manual add user</a>
+                <a class="btn btn-success" href="/user/create_user">Manual add user</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,6 @@
             <th>Name</th>
             <th>Address</th>
             <th>Email</th>
-            <th>Password</th>
             <th width="280px">Action</th>
         </tr>
 
@@ -34,11 +33,10 @@
                 <td class="text-center">{{ $user->name }}</td>
                 <td class="text-center">{{ $user->address }}</td>
                 <td class="text-center">{{ $user->email }}</td>
-                <td class="text-center">{{ $user->password }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy_user', $user->id)}}" method="POST">
-                        <a class="btn btn-info" href="{{route('show_user',$user->id)}}">Show</a>
-                        <a class="btn btn-primary" href="{{route('edit_user',$user->id)}}">Edit</a>
+                        <a class="btn btn-info" href="{{route('user.show_user',$user->id)}}">Show</a>
+                        <a class="btn btn-primary" href="{{route('user.edit_user',$user->id)}}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Remove</button>

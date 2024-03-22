@@ -22,11 +22,13 @@
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Login</button>
-                        <a href="{{ route('admin.register') }}" class="btn btn-link">Register</a> <!-- Added registration button -->
+                        <a href="{{ route('admin.register') }}" class="btn btn-link">Register</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    {{auth()->user()}}
 </div>
 @endsection

@@ -7,7 +7,7 @@
           <h2> Edit product details</h2>
       </div>
       <div class="pull-right">
-          <a class="btn btn-primary" href="{{url('/')}}"> Back </a>
+          <a class="btn btn-primary" href="{{url('/items/index')}}"> Back </a>
       </div>
   </div>
 </div>
@@ -15,6 +15,9 @@
 <form action="{{ route('update' ,$product->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    @if($errors->any())
+        {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
+    @endif
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">

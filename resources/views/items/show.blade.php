@@ -7,7 +7,7 @@
             <h2> Product details </h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{url('/')}}"> Back </a>
+            <a class="btn btn-primary" href="{{url('/items/index')}}"> Back </a>
         </div>
     </div>
 </div>

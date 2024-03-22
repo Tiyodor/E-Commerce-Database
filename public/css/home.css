@@ -1,25 +1,32 @@
 .container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow containers to wrap to the next line */
 }
 
-/* Product and user container styles */
 .product-container,
 .user-container {
-    width: 48%; /* Adjust as needed */
+    width: calc(48% - 10px); /* Adjust as needed */
     border: 1px solid #ccc;
     padding: 20px;
-    margin-bottom: 20px;
     margin-top: 30px;
+    margin-bottom: 20px;
     border-radius: 5px;
 }
 
-/* Header styles */
 .product-container header,
-.user-container header {
+.user-container header,
+.order-container header {
     font-size: 20px;
     margin-bottom: 10px;
     font-weight: bolder;
     text-align: center;
 }
 
+.order-container {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
