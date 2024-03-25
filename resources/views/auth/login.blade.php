@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="login-container">
+<div class="login-container grow">
     <div class="">
         <div class="">
             <div class="header">Admin Login</div>

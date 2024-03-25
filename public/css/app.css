@@ -363,3 +363,46 @@ button{
     max-width: 100%;
     margin-top: 10px;
 }
+
+
+.roll-in {
+    animation: roll-in 1s ease;
+  }
+  @keyframes roll-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%) ;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  .grow {
+    animation: grow 1s ease;
+  }
+  @keyframes grow {
+    from { transform: scale(0.3); }
+    to { transform: scale(1); }
+  }
+
+  .flip {
+	backface-visibility: visible !important;
+	animation: flip 1s ease ;
+}
+@keyframes flip {
+	0% {
+		transform: perspective(400px) rotateY(0);
+		animation-timing-function: ease-out;
+	}
+
+	80% {
+		transform: perspective(400px) rotateY(360deg) scale(.95);
+		animation-timing-function: ease-in;
+	}
+	100% {
+		transform: perspective(400px) scale(1);
+		animation-timing-function: ease-in;
+	}
+}

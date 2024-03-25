@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('product');
             $table->string('address');
+            $table->integer('total');
             $table->string('payment');
             $table->string('mod');
             $table->string('status');

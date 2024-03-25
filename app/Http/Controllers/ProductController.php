@@ -8,28 +8,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
-    public function retrieveSoftDeleted()
-    {
-        $products = Product::onlyTrashed()->get(); // Retrieve only soft-deleted products
-
-        return view('items.archive', compact('products'));
-    }
-
-    /**
-     * Restore the specified soft-deleted resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function restoreSoftDeleted($id)
-    {
-        $product = Product::onlyTrashed()->findOrFail($id);
-        $product->restore(); // Restore the soft-deleted product
-
-        return redirect()->route('items.index')
-            ->with('success', 'Product restored successfully');
-    }
     /**
      * Display a listing of the resource.
      */
@@ -149,5 +127,27 @@ class ProductController extends Controller
         $product->restore();
 
         return redirect()->route('items.index');
+    }
+
+    public function retrieveSoftDeleted()
+    {
+        $products = Product::onlyTrashed()->get(); // Retrieve only soft-deleted products
+
+        return view('items.archive', compact('products'));
+    }
+
+    /**
+     * Restore the specified soft-deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreSoftDeleted($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore(); // Restore the soft-deleted product
+
+        return redirect()->route('items.index')
+            ->with('success', 'Product restored successfully');
     }
 }

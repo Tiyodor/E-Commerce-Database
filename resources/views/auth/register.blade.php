@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="reg-container">
+    <div class="reg-container flip">
         <div class="">
             <div class="">
                 <div class="">

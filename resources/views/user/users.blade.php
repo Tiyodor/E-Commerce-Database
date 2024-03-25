@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="item-table">
+    <div class="item-table roll-in">
         <div class="navbar">
             <div class="navbar-nav">
                 <h2>User Management</h2>

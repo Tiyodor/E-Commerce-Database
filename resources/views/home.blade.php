@@ -4,8 +4,8 @@
 
 <link rel="stylesheet" type="text/css" href='css/home.css'>
 
-<div class="homecontainer">
-    <div class="product-container">
+<div class="homecontainer grow">
+    <div class="product-container pulse">
         <header>Latest Products</header>
         <div class="contents">
 
@@ -37,7 +37,7 @@
 
          </div>
     </div>
-    <div class="user-container">
+    <div class="user-container pulse">
         <header>Users</header>
         <div class="contents">
             <table class="user-table">
@@ -60,9 +60,38 @@
 
         </div>
     </div>
-    <div class="order-container">
+    <div class="order-container pulse">
         <header>Order Info</header>
         <div class="contents">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Product</th>
+                        <th class="text-center">Address</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">Mode of Delivery</th>
+                        <th class="text-center">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $i = 0 @endphp <!-- Define $i here -->
+
+                    @foreach ($orders as $order)
+                    <tr>
+                        <td class="text-center">{{ ++$i }}</td>
+                        <td class="text-center">{{ $order->name }}</td>
+                        <td class="text-center">{{ $order->product }}</td>
+                        <td class="text-center">{{ $order->address }}</td>
+                        <td class="text-center">Php {{ $order->total }}</td>
+                        <td class="text-center">{{ $order->mod }}</td>
+                        <td class="text-center">{{ $order->status }}</td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
 
 
