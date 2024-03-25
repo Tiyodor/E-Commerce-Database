@@ -39,11 +39,14 @@ Route::resource('products', 'ProductController');
     Route::get('create', [ProductController::class, 'create'])->name('items.product.store');
     Route::post('store', [ProductController::class, 'store'])->name('items.product.store');
     Route::get('index', [ProductController::class, 'index'])->name('items.index');
+    Route::get('archive', [ProductController::class, 'retrieveSoftDeleted'])->name('items.archive');
     Route::get('show/{product}', [ProductController::class, 'show'])->name('items.show');
     Route::get('edit/{product}', [ProductController::class, 'edit'])->name('items.edit');
     Route::put('edit/{product}', [ProductController::class, 'update'])->name('update');
-    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
-    });
+    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy')->withTrashed();
+    Route::post('/{product}', [ProductController::class, 'restore'])->name('restore')->withTrashed();
+
+});
 
 
 // Order Routes

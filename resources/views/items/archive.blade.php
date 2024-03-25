@@ -4,12 +4,7 @@
 <div class="item-table">
     <div class="navbar">
         <div class="navbar-nav">
-            <h2>Inventory</h2>
-        </div>
-        <div class="navbar-nav">
-            <a class="general-btn" href="create">Add new product</a>
-
-            <a class="general-btn" href="archive">Archived product</a>
+            <h2>Archives</h2>
         </div>
     </div>
 
@@ -26,6 +21,8 @@
             </tr>
         </thead>
         <tbody>
+            @php $i = 0 @endphp <!-- Define $i here -->
+
             @foreach ($products as $product)
             <tr>
                 <td class="text-center">{{ ++$i }}</td>
@@ -36,11 +33,16 @@
                 <td class="text-center">Php {{ $product->price }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
-                        <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>
-                        <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn">Delete</button>
+                    </form>
+
+                </td>
+                <td>
+                    <form action="{{route('restore', $product->id)}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">Restore</button>
                     </form>
                 </td>
             </tr>
@@ -48,9 +50,6 @@
         </tbody>
     </table>
 
-    <div class="pagination">
-        {!! $products->previousPageUrl() ? '<a href="' . $products->previousPageUrl() .  ' " class="btn-page">&lt; Previous</a>' : '' !!}
-        {!! $products->nextPageUrl() ? '<a href="' . $products->nextPageUrl() . '" class="btn-page">Next &gt;</a>' : '' !!}
-    </div>
+
 </div>
 @endsection
