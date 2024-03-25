@@ -3,6 +3,7 @@
 
 <head>
     <title>GundFactory</title>
+    <link rel="icon" type="image/x-icon" href="/logo.ico">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,8 @@
 
     <nav class="navbar">
         <a class="navbar-brand" href="/home">
-            GUND<span>FACTORY</span>
+            <!-- GUND<span>FACTORY</span> -->
+            <img src="/gundfactory.png" style="width: 300px;">
         </a>
 
 
