@@ -5,6 +5,10 @@
     <div class="navbar">
         <div class="navbar-nav">
             <h2>Archives</h2>
+
+        </div>
+        <div class="navbar-nav">
+            <a class="general-btn" href="{{url('/items/index')}}"> Back </a>
         </div>
     </div>
 

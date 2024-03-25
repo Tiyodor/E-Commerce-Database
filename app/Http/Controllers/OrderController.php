@@ -14,7 +14,7 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->paginate(4);
 
-        return view('orders', compact('orders'))
+        return view('order.orders', compact('orders'))
             ->with('i', (request()->input('page', 1) - 1) * 4);
     }
 

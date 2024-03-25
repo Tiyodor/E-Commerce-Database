@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{{ route('items.index')}}">Inventory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders">Orders</a>
+                    <a class="nav-link" href="{{ route('order.orders')}}">Orders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.users') }}">Users</a>

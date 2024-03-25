@@ -50,7 +50,11 @@ Route::resource('products', 'ProductController');
 
 
 // Order Routes
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+    Route::prefix('order')->group(function(){
+    Route::get('orders', [OrderController::class, 'index'])->name('order.orders');
+
+
+    });
 
 
     Route::prefix('user')->group(function(){
