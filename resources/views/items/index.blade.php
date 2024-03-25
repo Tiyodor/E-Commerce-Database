@@ -40,7 +40,7 @@
                         <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn">Delete</button>
+                        <button type="submit" class="btn">Archive</button>
                     </form>
                 </td>
             </tr>

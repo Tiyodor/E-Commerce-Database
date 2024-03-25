@@ -28,7 +28,7 @@
 
         @foreach ($users as $user)
             <tr>
-                <td class="text-center">{{ ++$i }}</td>
+                <td class="text-center">{{ $user->id }}</td>
                 <td class="text-center">{{ $user->name }}</td>
                 <td class="text-center">{{ $user->address }}</td>
                 <td class="text-center">{{ $user->email }}</td>
