@@ -20,7 +20,8 @@ body{
     background-image: url("/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+    overflow: hidden ;
+
 
 }
 
@@ -42,7 +43,7 @@ body{
     color: white;
     font-family: "Bungee Hairline", sans-serif;
     font-weight: 1000;
-    font-size: 35px;
+    font-size: 30px;
     font-style: normal;
     padding: 10px;
 

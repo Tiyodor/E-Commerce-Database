@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 
 /*
@@ -25,7 +26,14 @@ Route::middleware('guest:admin')->group(function(){
 Route::middleware('admin.auth')->group(function () {
 
     Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-    Route::get('/home', function () { return view('home');});
+
+//home controller routes
+Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::resource('users', 'UserController');
+Route::resource('products', 'ProductController');
+
+
+
 // Product controller routes
     Route::prefix('items')->group(function(){
     Route::get('create', [ProductController::class, 'create'])->name('items.product.store');

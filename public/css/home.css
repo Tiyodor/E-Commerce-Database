@@ -1,12 +1,16 @@
-.container {
+.homecontainer {
+    margin-top: 5px;
+    border-radius: 15px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap; /* Allow containers to wrap to the next line */
-    justify-content: space-between; /* Align containers at the beginning and end */
+    justify-content: space-evenly; /* Align containers at the beginning and end */
+    background-color: rgba(0, 0, 0, 0.479);
 }
 
 .product-container,
 .user-container {
-    width: 48%; /* Adjust as needed */
+    width: 45%; /* Adjust as needed */
     border: 1px solid #ccc;
     padding: 20px;
     margin-top: 30px;
@@ -24,15 +28,17 @@
 }
 
 .product-container header,
-.user-container header {
+.user-container header,
+.order-container header {
     font-size: 20px;
+    background-color: rgba(41, 40, 40, 0.479);
     margin-bottom: 10px;
     font-weight: bolder;
     text-align: center;
 }
 
 .order-container {
-    width: 100%; /* Make sure order container takes full width */
+    width: 95%; /* Make sure order container takes full width */
     background-color: #4570e7;
     color: white;
     padding: 14px 25px;
