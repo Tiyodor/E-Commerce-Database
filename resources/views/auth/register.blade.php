@@ -1,21 +1,21 @@
 @extends('app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register Admin') }}</div>
+    <div class="reg-container">
+        <div class="">
+            <div class="">
+                <div class="">
+                    <div class="header">{{ __('Register Admin') }}</div>
 
-                    <div class="card-body">
+                    <div class="">
                         <form method="POST" action="{{ route('admin.register') }}">
                             @csrf
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <div class="form-group">
+                                <label for="name" class="form-label">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -25,11 +25,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <div class="form-group">
+                                <label for="username" class="form-label">{{ __('Username') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
+                                    <input id="username" type="text" class="form-input @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
 
                                     @error('username')
                                         <span class="invalid-feedback" role="alert">
@@ -39,11 +39,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <div class="form-group">
+                                <label for="password" class="form-label">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                                    <input id="password" type="password" class="form-input @error('password') is-invalid @enderror" name="password" required>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -53,17 +53,17 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="form-group">
+                                <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="password_confirmation" type="password" class="form-input" name="password_confirmation" required>
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="form-group">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="login-buttons">
                                         {{ __('Register') }}
                                     </button>
                                 </div>

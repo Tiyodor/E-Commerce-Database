@@ -1,16 +1,17 @@
 @extends('app')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
+<div class="form-container">
+    <div>
+    <div class="navbar">
+        <div class="navbar-nav">
             <h2>Add New Product</h2>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url('/items/index') }}"> Back</a>
+        <div class="navbar-nav">
+            <a class="general-btn" href="{{ url('/items/index') }}"> Back</a>
         </div>
     </div>
-</div>
+
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -27,22 +28,22 @@
     @csrf
 
      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <input type="text" name="name" class="form-input" placeholder="Name">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Detail:</strong>
-                <textarea class="form-control" style="height:150px" name="details" placeholder="Details"></textarea>
+                <textarea class="form-input" style="height:50px" name="details" placeholder="Details"></textarea>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Category:</strong>
-                 <select  name="category" class="form-control">
+                 <select  name="category" class="form-input">
                     <option value="SD">SD</option>
                     <option value="EG">EG</option>
                     <option value="HG">HG</option>
@@ -56,23 +57,25 @@
                   </select>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Image:</strong>
-                <input type="file" name="product_image" class="form-control" placeholder="image">
+                <input type="file" name="product_image" class="form-input" placeholder="image">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Price:</strong>
-                <textarea class="form-control" style="height:150px" name="price" placeholder="Price"></textarea>
+                <textarea class="form-input" style="height:50px" name="price" placeholder="Price"></textarea>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-groups text-center">
+                <button type="submit" class="btn">Submit</button>
         </div>
     </div>
 
 </form>
+</div>
+</div>
 @endsection
 

@@ -1,46 +1,47 @@
 @extends('app')
 
 @section('content')
-    <div class="row">
-      <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
+    <div class="form-container">
+      <div class="navbar">
+        <div class="navbar-nav">
             <h2> Product details </h2>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{url('/items/index')}}"> Back </a>
+        <div class="navbar-nav">
+            <a class="general-btn" href="{{url('/items/index')}}"> Back </a>
         </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+
+<div class="rows">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Name: </strong>
             {{$product->name}}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Details: </strong>
             {{$product->details}}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Category: </strong>
             {{$product->category}}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Product Image: </strong>
-            <img src="/images/{{ $product->product_image }}" width="500px">
+            <img src="/images/{{ $product->product_image }}" width="400px">
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Price: </strong>
             {{$product->price}}
         </div>
     </div>
+</div>
 @endsection

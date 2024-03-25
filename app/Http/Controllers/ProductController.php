@@ -114,7 +114,7 @@ class ProductController extends Controller
        $product->delete();
 
        return redirect()->route('items.index')
-                        ->with('success', 'product remove');
+                    ;
     }
 
 

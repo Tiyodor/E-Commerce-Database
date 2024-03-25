@@ -1,28 +1,29 @@
 @extends('app')
 
 @section('content')
-<div class="row justify-content-center mt-5">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">Admin Login</div>
 
-            <div class="card-body">
+<div class="login-container">
+    <div class="">
+        <div class="">
+            <div class="header">Admin Login</div>
+
+            <div class="">
                 <form method="POST" action="{{ route('admin.login') }}">
                     @csrf
 
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="username" class="form-label">Username</label>
-                        <input id="username" type="username" class="form-control" name="username" required autofocus>
+                        <input id="username" type="username" class="form-input" name="username" required autofocus>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="password" class="form-label">Password</label>
-                        <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" class="form-input" name="password" required autocomplete="current-password">
                     </div>
 
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <a href="{{ route('admin.register') }}" class="btn btn-link">Register</a>
+                    <div class="login-butt">
+                        <button type="submit" class="login-buttons">Login</button>
+                        <a href="{{ route('admin.register') }}" class="login-buttons">Register</a>
                     </div>
                 </form>
             </div>

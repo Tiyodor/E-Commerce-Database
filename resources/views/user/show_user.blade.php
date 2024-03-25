@@ -1,34 +1,35 @@
 @extends('app')
 
 @section('content')
-    <div class="row">
-      <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
+    <div class="form-container">
+      <div class="navbar">
+        <div class="navbar-nav">
             <h2> User details </h2>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{url('user/users')}}"> Back </a>
+        <div class="navbar-nav">
+            <a class="general-btn" href="{{url('user/users')}}"> Back </a>
         </div>
     </div>
-</div>
 
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Name: </strong>
             {{$user->name}}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Address: </strong>
             {{$user->address}}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Email: </strong>
             {{$user->email}}
         </div>
     </div>
+</div>
+
 @endsection

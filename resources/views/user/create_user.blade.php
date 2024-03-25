@@ -1,16 +1,16 @@
 @extends('app')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
+<div class="form-container">
+    <div class="navbar">
+        <div class="navbar-nav">
             <h2>Add New User</h2>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ url('/user/users') }}"> Back</a>
+        <div class="navbar-nav">
+            <a class="general-btn" href="{{ url('/user/users') }}"> Back</a>
         </div>
     </div>
-</div>
+
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -27,35 +27,36 @@
     @csrf
 
      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Name:</strong>
-                <input type="text" name="name" style="height:50px" class="form-control" placeholder="Name">
+                <input type="text" name="name" style="height:50px" class="form-input" placeholder="Name">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Address:</strong>
-                <input class="form-control" style="height:50px" name="address" placeholder="Address"></input>
+                <input class="form-input" style="height:50px" name="address" placeholder="Address"></input>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Email:</strong>
-                <input class="form-control" style="height:50px" name="email" placeholder="Email"></input>
+                <input class="form-input" style="height:50px" name="email" placeholder="Email"></input>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+        <div class="form-groups">
+            <div class="forms-label">
                 <strong>Password:</strong>
-                <input class="form-control" style="height:50px" name="password" placeholder="Password"></input>
+                <input class="form-input" style="height:50px" name="password" placeholder="Password"></input>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <div class="form-groups text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 
 </form>
+</div>
 @endsection
 

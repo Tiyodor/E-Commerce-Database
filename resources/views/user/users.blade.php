@@ -2,16 +2,14 @@
 
 @section('content')
     <div class="item-table">
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
+        <div class="navbar">
+            <div class="navbar-nav">
                 <h2>User Management</h2>
             </div>
-            <div class="pull-right" style="margin-bottom:10px;">
-                <a class="btn btn-success" href="/user/create_user">Manual add user</a>
+            <div class="navbar-nav">
+                <a class="general-btn" href="create_user">Manual Add user</a>
             </div>
         </div>
-    </div>
 
 
         @if ($message = Session::get('success'))
@@ -19,7 +17,7 @@
             <p>{{$message}}</p>
         @endif
 
-    <table class="table table-bordered">
+    <table class="user-table">
         <tr>
             <th>Id</th>
             <th>Name</th>
@@ -36,11 +34,11 @@
                 <td class="text-center">{{ $user->email }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy_user', $user->id)}}" method="POST">
-                        <a class="btn btn-info" href="{{route('user.show_user',$user->id)}}">Show</a>
-                        <a class="btn btn-primary" href="{{route('user.edit_user',$user->id)}}">Edit</a>
+                        <a class="btn" href="{{route('user.show_user',$user->id)}}">Show</a>
+                        <a class="btn" href="{{route('user.edit_user',$user->id)}}">Edit</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Remove</button>
+                        <button type="submit" class="btn">Remove</button>
                     </form>
 
                 </td>
@@ -48,9 +46,9 @@
         @endforeach
     </table>
 
-    <div class="d-flex justify-content-center">
-        {!! $users->previousPageUrl() ? '<a href="' . $users->previousPageUrl() . '" class="btn btn-primary mr-2 pr-2">&lt; Previous</a>' : '' !!}
-        {!! $users->nextPageUrl() ? '<a href="' . $users->nextPageUrl() . '" class="btn btn-primary">Next &gt;</a>' : '' !!}
+    <div class="pagination">
+        {!! $users->previousPageUrl() ? '<a href="' . $users->previousPageUrl() . '" class="btn-page">&lt; Previous</a>' : '' !!}
+        {!! $users->nextPageUrl() ? '<a href="' . $users->nextPageUrl() . '" class="btn-page">Next &gt;</a>' : '' !!}
     </div>
         </div>
 @endsection

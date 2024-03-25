@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,6 +20,7 @@ body{
     background-image: url("/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 
 }
 
@@ -39,8 +39,14 @@ body{
     display: flex;
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    margin-right: 200px;
+    color: white;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-size: 35px;
+    font-style: normal;
+    padding: 10px;
+
+
 }
 
 .nav-item {
@@ -59,6 +65,28 @@ body{
     color: #000;
 }
 
+.general-btn {
+    background-color: #e0c83d;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    margin-right: 10px;
+
+}
+
+.general-btn:hover {
+    background-color: #b19e33;
+}
+
+
 /* Logout button style */
 .logout-btn {
     background-color: #e53e3e;
@@ -69,48 +97,267 @@ body{
     cursor: pointer;
     font-size: 1.1rem;
     font-family: "Bungee Hairline", sans-serif;
-  font-weight: 1000;
-  font-style: normal;
+    font-weight: 1000;
+    font-style: normal;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+
 }
 
 .logout-btn:hover {
     background-color: #c53030;
 }
 
-.item-table{
-    table-layout: auto;
-    background-color: rgba(54, 42, 8, 0.315);
+.item-table {
+    background-color: rgba(43, 32, 5, 0.555);
     box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
-    display:grid ;
-    margin: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-    align-content: center;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.product-table,
+.user-table {
+    width: 100%;
+    table-layout: auto;
     color: #fff;
     font-family: "Bungee Hairline", sans-serif;
     font-weight: 1000;
     font-style: normal;
-    border-radius: 10px;
+}
+
+.product-table th,
+.product-table td,
+.user-table th,
+.user-table td {
+    text-align: center;
+    padding: 10px;
+}
+
+.product-table img {
+    display: block;
+    margin: 0 auto;
+}
+
+.pagination {
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .btn {
-    background-color: #411234;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     text-decoration: none;
-    display: inline-block;
-  }
+}
 
-  button{
-    background-color: #411234;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-page {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
     font-family: "Bungee Hairline", sans-serif;
     font-weight: 1000;
     font-style: normal;
     text-decoration: none;
-    display: inline-block;
+    margin: 0 5px;
+}
+
+.btn-page:hover {
+    background-color: #0056b3;
+}
+
+button{
+    padding: 20px 20px;
+    text-align: center;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    border: none;
+
   }
+/* login css */
+  .login-container {
+    width: 600px;
+    height: 500px;
+    border-radius: 15px;
+    background: rgb(247, 243, 243);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center horizontally and vertically */
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    margin: 0 auto; /* This will center the container horizontally */
+    margin-top: 50px; /* Adjust margin top to provide space for the header */
+}
+
+.reg-container {
+    width: 600px;
+    height: 700px;
+    border-radius: 15px;
+    background: rgb(247, 243, 243);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center horizontally and vertically */
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    margin: 0 auto; /* This will center the container horizontally */
+    margin-top: 50px; /* Adjust margin top to provide space for the header */
+}
+
+
+.header {
+    background-color: rgba(255, 255, 255, 0.76);
+    font-size: 35px;
+    font-style: normal;
+    text-align: center;
+    border-radius: 15px 15px 0px 0px;
+    padding: 10px;
+    margin-bottom: 20px; /* Added margin bottom to provide space below the header */
+}
+
+.form-group {
+
+    font-size: 20px;
+    width: 90%;
+    padding: 10px;
+}
+
+.form-label {
+    display: block; /* Ensure labels are displayed as block elements */
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px; /* Add margin bottom for spacing between label and input */
+}
+
+.form-input {
+    width: calc(100% - 20px); /* Adjust width to accommodate padding and border */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-butt{
+    display: flex;
+    justify-content: space-evenly ;
+    margin-left: 20px;
+    padding: 20px;
+}
+.login-buttons {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    text-decoration: none;
+
+}
+
+.login-buttons:hover {
+    background-color: #0056b3;
+}
+
+/*forms css */
+
+
+.form-container{
+    background-color: rgba(43, 32, 5, 0.555);
+    box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
+    margin: 5px;
+    padding: 5px;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    text-decoration: none;
+    color: white;
+
+    border-radius: 10px;
+}
+
+.forms-label {
+    display: block; /* Ensure labels are displayed as block elements */
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px; /* Add margin bottom for spacing between label and input */
+}
+
+
+.form-groups {
+
+    font-size: 20px;
+    width: 95%;
+    padding: 10px;
+}
+
+.edit-container {
+    background-color: rgba(43, 32, 5, 0.555);
+    box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
+    margin: 5px;
+    padding: 5px;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+}
+
+.edit-container .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.edit-container .navbar h2 {
+    margin: 0;
+}
+
+.edit-container .navbar-nav {
+    display: flex;
+}
+
+
+
+.edit-container .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.edit-container .form-group {
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+}
+
+.edit-container .forms-label {
+    display: flex;
+    align-items: center;
+}
+
+.edit-container .forms-label strong {
+    margin-right: 10px;
+}
+
+.edit-container .form-input {
+    width: 80%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.edit-container img {
+    max-width: 100%;
+    margin-top: 10px;
+}
