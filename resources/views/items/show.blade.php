@@ -33,14 +33,14 @@
     </div>
     <div class="form-group">
         <div class="forms-label">
-            <strong>Product Image: </strong>
-            <img src="/images/{{ $product->product_image }}" width="400px">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="forms-label">
             <strong>Price: </strong>
             {{$product->price}}
+            <br>
+            <strong>Product Image: </strong>
+            <br>
+            <img src="/images/{{ $product->product_image }}" width="450px">
+
+
         </div>
     </div>
 </div>

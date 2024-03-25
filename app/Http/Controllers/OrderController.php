@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -23,15 +24,21 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+
+        $input = $request->all();
+
+        Order::create($input);
+
+        return redirect()->route('order.orders')
+                        ->with('success', 'Order Created Successfully');
     }
 
     /**

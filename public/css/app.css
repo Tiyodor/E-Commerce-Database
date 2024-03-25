@@ -4,7 +4,7 @@
 
   /* Navbar styles */
    .navbar {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(248, 248, 248, 0.842);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
     height: 70px;
@@ -41,6 +41,7 @@ body{
     display: flex;
     list-style-type: none;
     margin: 0;
+    text-shadow: 1px 1px #000000;
     color: white;
     font-family: "Bungee Hairline", sans-serif;
     font-weight: 1000;
@@ -111,7 +112,7 @@ body{
 }
 
 .item-table {
-    background-color: rgba(43, 32, 5, 0.555);
+    background-color: rgba(43, 32, 5, 0.788);
     box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
     margin: 5px;
     padding: 5px;
