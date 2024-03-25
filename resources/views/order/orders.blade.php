@@ -62,7 +62,8 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
+    
     // Calculate and display total price for each order
     @foreach ($orders as $order)
         var total_{{ $order->id }} = 0;
@@ -72,6 +73,6 @@
         document.getElementById('total_{{ $order->id }}').innerHTML = 'Php ' + total_{{ $order->id }}.toFixed(2);
     @endforeach
     
-</script>
+</script> -->
 
 @endsection
