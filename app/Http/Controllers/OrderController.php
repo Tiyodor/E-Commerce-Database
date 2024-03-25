@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 
@@ -19,26 +20,39 @@ class OrderController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 4);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('order.create');
+        $products = Product::all();
+        return view('order.create', compact('products')); // Corrected view name
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(OrderRequest $request)
+    public function store(Request $request)
     {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'product' => 'required|array',
+            'product.*' => 'exists:products,id', // Validate each product ID exists in the products table
+            'payment' => 'required|string',
+            'mod' => 'required|string',
+            'status' => 'required|string',
+        ]);
 
-        $input = $request->all();
+        // Create order record
+        $order = new Order();
+        $order->name = $validatedData['name'];
+        $order->address = $validatedData['address'];
+        $order->payment = $validatedData['payment'];
+        $order->mod = $validatedData['mod'];
+        $order->status = $validatedData['status'];
+        $order->save();
 
-        Order::create($input);
+        // Attach selected products to the order
+        $order->products()->attach($validatedData['product']);
 
-        return redirect()->route('order.orders')
-                        ->with('success', 'Order Created Successfully');
+        // Redirect or return a response
+        return redirect()->route('order.orders')->with('success', 'Order created successfully.');
     }
 
     /**

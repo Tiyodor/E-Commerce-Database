@@ -12,7 +12,6 @@
         </div>
     </div>
 
-
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,7 +23,7 @@
     </div>
 @endif
 
-<form action="{{ route('order.order.store') }}" method="POST" enctype="multipart/form-data">
+<form id="order-form" action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
      <div class="row">
@@ -41,20 +40,21 @@
             </div>
         </div>
         <div class="form-groups">
-            <div class="forms-label">
-                <strong>Product:</strong>
-                 <select  name="product" class="form-input">
-                    <option value="SD">SD</option>
-                    <option value="EG">EG</option>
-                    <option value="HG">HG</option>
-                    <option value="RG">RG</option>
-                    <option value="MG">MG</option>
-                    <option value="PG">PG</option>
-                    <option value="HI-RES">HI-RES</option>
-                    <option value="1/100">1/100</option>
-                  </select>
-            </div>
-        </div>
+    <div class="forms-label">
+        <strong>Product:</strong>
+        <select id="product" name="product[]" class="form-input" multiple>
+            @foreach($products as $product)
+                <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-groups">
+    <div class="forms-label">
+        <strong>Total: Php</strong>
+        <div id="total"  style="height:50px"></div>
+    </div>
+</div>
 
         <div class="form-groups">
             <div class="forms-label">
@@ -78,15 +78,37 @@
             </div>
         </div>
 
-
+        <div class="form-groups">
+            <div class="forms-label">
+                <strong>Status:</strong>
+                 <select  name="status" class="form-input">
+                    <option value="processing">Processing</option>
+                    <option value="Ofd">Out for Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                  </select>
+            </div>
+        </div>
 
         <div class="form-groups text-center">
                 <button type="submit" class="btn">Submit</button>
         </div>
     </div>
-
 </form>
 </div>
 </div>
-@endsection
 
+<script>
+document.getElementById('product').addEventListener('change', function() {
+    var selectedProducts = this.selectedOptions;
+    var totalPrice = 0;
+    for (var i = 0; i < selectedProducts.length; i++) {
+        var price = parseFloat(selectedProducts[i].getAttribute('data-price'));
+        totalPrice += price;
+    }
+    document.getElementById('total').innerHTML = '<strong>Total: Php ' + totalPrice.toFixed(2) + '</strong>';
+});
+
+</script>
+
+
+@endsection

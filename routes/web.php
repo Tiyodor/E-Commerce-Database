@@ -52,8 +52,8 @@ Route::resource('products', 'ProductController');
 // Order Routes
     Route::prefix('order')->group(function(){
     Route::get('orders', [OrderController::class, 'index'])->name('order.orders');
-    Route::get('create', [OrderController::class, 'create'])->name('order.order.store');
-    Route::post('store', [OrderController::class, 'store'])->name('order.order.store');
+    Route::get('create', [OrderController::class, 'create'])->name('order.store');
+    Route::post('store', [OrderController::class, 'store'])->name('order.store');
 
 
     });
