@@ -66,6 +66,7 @@
                                     <button type="submit" class="login-buttons">
                                         {{ __('Register') }}
                                     </button>
+
                                 </div>
                             </div>
                         </form>

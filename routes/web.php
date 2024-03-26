@@ -39,12 +39,12 @@ Route::resource('products', 'ProductController');
     Route::get('create', [ProductController::class, 'create'])->name('items.product.store');
     Route::post('store', [ProductController::class, 'store'])->name('items.product.store');
     Route::get('index', [ProductController::class, 'index'])->name('items.index');
-    Route::get('archive', [ProductController::class, 'retrieveSoftDeleted'])->name('items.archive');
     Route::get('show/{product}', [ProductController::class, 'show'])->name('items.show');
     Route::get('edit/{product}', [ProductController::class, 'edit'])->name('items.edit');
     Route::put('edit/{product}', [ProductController::class, 'update'])->name('update');
     Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy')->withTrashed();
     Route::post('/{product}', [ProductController::class, 'restore'])->name('restore')->withTrashed();
+    Route::get('archive', [ProductController::class, 'retrieveSoftDeleted'])->name('items.archive');
 
 });
 
@@ -55,11 +55,11 @@ Route::resource('products', 'ProductController');
     Route::get('create', [OrderController::class, 'create'])->name('order.store');
     Route::post('store', [OrderController::class, 'store'])->name('order.store');
     Route::get('show/{order}', [OrderController::class, 'show'])->name('order.show');
-    Route::get('edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
-    Route::put('edit/{order}', [OrderController::class, 'update'])->name('update');
-    Route::delete('/{order}', [OrderController::class, 'destroy'])->name('destroy')->withTrashed();
-    Route::post('/{order}', [OrderController::class, 'restore'])->name('restore')->withTrashed();
-    Route::get('archive', [OrderController::class, 'retrieveSoftDeleted'])->name('order.archive');
+    Route::get('edits/{order}', [OrderController::class, 'edits'])->name('order.edits');
+    Route::put('edits/{order}', [OrderController::class, 'updates'])->name('updates');
+    Route::delete('/{order}', [OrderController::class, 'destroyer'])->name('destroyer')->withTrashed();
+    Route::post('/{order}', [OrderController::class, 'restorer'])->name('restorer')->withTrashed();
+    Route::get('history', [OrderController::class, 'retrieveSoftDelete'])->name('order.history');
 
     });
 

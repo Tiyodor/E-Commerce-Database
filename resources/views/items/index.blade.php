@@ -22,6 +22,8 @@
                 <th class="text-center">Category</th>
                 <th class="text-center">Product Image</th>
                 <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Availability</th>
                 <th class="text-center">Action</th>
             </tr>
         </thead>
@@ -34,6 +36,8 @@
                 <td class="text-center">{{ $product->category }}</td>
                 <td><img src="/images/{{ $product->product_image }}" width="145"  class="center" /></td>
                 <td class="text-center">Php {{ $product->price }}</td>
+                <td class="text-center">{{ $product->quantity }}</td>
+                <td class="text-center">{{ $product->availability }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
                         <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>

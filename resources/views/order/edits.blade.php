@@ -7,12 +7,12 @@
           <h2> Edit order details</h2>
       </div>
       <div class="navbar-nav">
-          <a class="general-btn" href="{{url('/items/index')}}"> Back </a>
+          <a class="general-btn" href="{{url('/order/orders')}}"> Back </a>
       </div>
   </div>
 
 
-<form action="{{ route('update' ,$order->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('updates' ,$order->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     @if($errors->any())

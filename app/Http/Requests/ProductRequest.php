@@ -27,6 +27,8 @@ class ProductRequest extends FormRequest
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'category' => 'required|in:SD,EG,HG,RG,MG,PG,HI-RES,1/100',
             'price' => 'required',
+            'quantity' => 'required',
+            'availability' => 'required|in:Pre-order,Available,Sold Out',
         ];
     }
 }

@@ -10,7 +10,7 @@
         <div class="navbar-nav">
             <a class="general-btn" href="create">Add Order</a>
 
-            <a class="general-btn" href="archive">Archived Order</a>
+            <a class="general-btn" href="history">Delivery History</a>
         </div>
     </div>
 
@@ -44,12 +44,12 @@
                 <td class="text-center">{{ $order->mod }}</td>
                 <td class="text-center">{{ $order->status }}</td>
                 <td class="text-center">
-                    <form action="{{ route('destroy', $order->id) }}" method="POST">
+                    <form action="{{ route('destroyer', $order->id) }}" method="POST">
                         <a class="btn" href="{{ route('order.show', $order->id) }}">Show</a>
-                        <a class="btn" href="{{ route('order.edit', $order->id) }}">Edit</a>
+                        <a class="btn" href="{{ route('order.edits', $order->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn">Delete</button>
+                        <button type="submit" class="btn">Delivered</button>
                     </form>
                 </td>
             </tr>

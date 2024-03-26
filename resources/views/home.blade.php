@@ -77,6 +77,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $i = 0 @endphp <!-- Define $i here -->
+
                     @foreach ($orders as $order)
                     <tr>
                         <td class="text-center">{{ ++$i }}</td>

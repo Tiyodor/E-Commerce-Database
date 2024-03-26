@@ -13,6 +13,7 @@
 
 
 <div class="rows">
+    <div class="left-side">
     <div class="form-group">
         <div class="forms-label">
             <strong>Name: </strong>
@@ -29,19 +30,23 @@
         <div class="forms-label">
             <strong>Category: </strong>
             {{$product->category}}
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="forms-label">
+            <br>
             <strong>Price: </strong>
             {{$product->price}}
-            <br>
+        </div>
+    </div>
+</div>
+    <div class="right-side">
+
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Product Image: </strong>
             <br>
-            <img src="/images/{{ $product->product_image }}" width="450px">
+            <img src="/images/{{ $product->product_image }}" width="600px">
 
 
         </div>
     </div>
+</div>
 </div>
 @endsection

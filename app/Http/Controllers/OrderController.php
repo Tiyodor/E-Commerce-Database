@@ -14,10 +14,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->paginate(4);
+        $orders = Order::latest()->paginate(5);
 
         return view('order.orders', compact('orders'))
-            ->with('i', (request()->input('page', 1) - 1) * 4);
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()
@@ -66,14 +66,14 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function edits(Order $order)
     {
         $products = Product::all();
-     return view('order.edit' ,compact('order'));
+     return view('order.edits' ,compact('order'));
     }
 
 
-    public function update(Request $request, Order $order)
+    public function updates(Request $request, Order $order)
     {
         $validatedData = $request->validate([
 
@@ -92,7 +92,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroyer(Order $order)
     {
         if($order->trashed()){
             $order->forceDelete();
@@ -105,18 +105,18 @@ class OrderController extends Controller
             ->with('success', 'Order removed');
     }
 
-    public function restore(Order $order, Request $request)
+    public function restorer(Order $order, Request $request)
     {
         $order->restore();
 
         return redirect()->route('order.orders');
     }
 
-    public function retrieveSoftDeleted()
+    public function retrieveSoftDelete()
     {
         $orders = Order::onlyTrashed()->get(); // Retrieve only soft-deleted products
 
-        return view('order.archive', compact('orders'));
+        return view('order.history', compact('orders'));
     }
 
     /**
@@ -132,5 +132,16 @@ class OrderController extends Controller
 
         return redirect()->route('order.orders')
             ->with('success', 'Product restored successfully');
+    }
+
+    public function IncrementQty(Order $order)
+    {
+        $product = $order->product;
+        $order->increment('product_quantity', 1);
+        $order->update(['product_price'=>$order->product_quantity * $product->price]);
+
+        $product->decrement('quantity', 1);
+
+        $this->mount();
     }
 }

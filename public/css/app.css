@@ -284,9 +284,11 @@ button{
     font-style: normal;
     text-decoration: none;
     color: white;
-
     border-radius: 10px;
+
 }
+
+
 
 .forms-label {
     display: block; /* Ensure labels are displayed as block elements */
@@ -315,6 +317,10 @@ button{
     text-decoration: none;
     color: white;
     border-radius: 10px;
+    width: 99%;
+    max-width: 1900px;
+    height: 800px;
+
 }
 
 .edit-container .navbar {
@@ -406,4 +412,24 @@ button{
 		transform: perspective(400px) scale(1);
 		animation-timing-function: ease-in;
 	}
+}
+
+.left-side, .right-side {
+    width: 45%; /* Adjust as needed */
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    font-family: "Bungee Hairline", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.right-side{
+    position: fixed;
 }
