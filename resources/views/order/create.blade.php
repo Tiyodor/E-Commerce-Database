@@ -98,6 +98,7 @@
 </div>
 
 <script>
+
 document.getElementById('product').addEventListener('change', function() {
     var selectedProducts = this.selectedOptions;
     var totalPrice = 0;

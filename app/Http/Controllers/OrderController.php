@@ -60,7 +60,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('order.show' ,compact('order'));
     }
 
     /**
@@ -68,15 +68,25 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $products = Product::all();
+     return view('order.edit' ,compact('order'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Order $order)
     {
-        //
+        $validatedData = $request->validate([
+
+            'status' => 'required|string',
+        ]);
+
+
+
+        $order->status = $validatedData['status'];
+        $order->save();
+
+        return redirect()->route('order.orders')->with('success', 'Order created successfully.');
+
     }
 
     /**
@@ -84,6 +94,43 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        if($order->trashed()){
+            $order->forceDelete();
+            return redirect()->route('order.orders');
+        }
+
+        $order->delete(); // Soft delete
+
+        return redirect()->route('order.orders')
+            ->with('success', 'Order removed');
+    }
+
+    public function restore(Order $order, Request $request)
+    {
+        $order->restore();
+
+        return redirect()->route('order.orders');
+    }
+
+    public function retrieveSoftDeleted()
+    {
+        $orders = Order::onlyTrashed()->get(); // Retrieve only soft-deleted products
+
+        return view('order.archive', compact('orders'));
+    }
+
+    /**
+     * Restore the specified soft-deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreSoftDeleted($id)
+    {
+        $order = Order::onlyTrashed()->findOrFail($id);
+        $order->restore(); // Restore the soft-deleted product
+
+        return redirect()->route('order.orders')
+            ->with('success', 'Product restored successfully');
     }
 }

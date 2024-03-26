@@ -29,10 +29,10 @@ class OrderRequest extends FormRequest
             'product' => ['required', function ($attribute, $value, $fail) {
                 // Get array of valid product IDs
                 $productIds = Product::pluck('id')->toArray();
-                
+
                 // Convert $value to an array if it's not already one
                 $selectedProducts = is_array($value) ? $value : [$value];
-            
+
                 // Check each selected product ID
                 foreach ($selectedProducts as $productId) {
                     if (!in_array($productId, $productIds)) {
@@ -40,7 +40,7 @@ class OrderRequest extends FormRequest
                     }
                 }
             }],
-            
+
             'payment' => 'required|in:COD,Bank,Gcash',
             'mod' => 'required|in:Shopee,Lalamove,J&T',
             'total' => 'required|numeric|min:0',

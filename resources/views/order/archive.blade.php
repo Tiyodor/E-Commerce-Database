@@ -8,9 +8,7 @@
             <h2>Orders</h2>
         </div>
         <div class="navbar-nav">
-            <a class="general-btn" href="create">Add Order</a>
-
-            <a class="general-btn" href="archive">Archived Order</a>
+            <a class="general-btn" href="{{url('/order/orders')}}">Back</a>
         </div>
     </div>
 
@@ -29,6 +27,8 @@
             </tr>
         </thead>
         <tbody>
+            @php $i = 0 @endphp <!-- Define $i here -->
+
             @foreach ($orders as $order)
             <tr>
                 <td class="text-center">{{ ++$i }}</td>
@@ -45,22 +45,21 @@
                 <td class="text-center">{{ $order->status }}</td>
                 <td class="text-center">
                     <form action="{{ route('destroy', $order->id) }}" method="POST">
-                        <a class="btn" href="{{ route('order.show', $order->id) }}">Show</a>
-                        <a class="btn" href="{{ route('order.edit', $order->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn">Delete</button>
+                    </form>
+                </td>
+                <td >
+                    <form action="{{ route('restore', $order->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">Restore</button>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
-    <div class="pagination">
-        {!! $orders->previousPageUrl() ? '<a href="' . $orders->previousPageUrl() .  ' " class="btn-page">&lt; Previous</a>' : '' !!}
-        {!! $orders->nextPageUrl() ? '<a href="' . $orders->nextPageUrl() . '" class="btn-page">Next &gt;</a>' : '' !!}
-    </div>
 </div>
 
 <script>

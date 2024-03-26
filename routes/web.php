@@ -54,7 +54,12 @@ Route::resource('products', 'ProductController');
     Route::get('orders', [OrderController::class, 'index'])->name('order.orders');
     Route::get('create', [OrderController::class, 'create'])->name('order.store');
     Route::post('store', [OrderController::class, 'store'])->name('order.store');
-
+    Route::get('show/{order}', [OrderController::class, 'show'])->name('order.show');
+    Route::get('edit/{order}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::put('edit/{order}', [OrderController::class, 'update'])->name('update');
+    Route::delete('/{order}', [OrderController::class, 'destroy'])->name('destroy')->withTrashed();
+    Route::post('/{order}', [OrderController::class, 'restore'])->name('restore')->withTrashed();
+    Route::get('archive', [OrderController::class, 'retrieveSoftDeleted'])->name('order.archive');
 
     });
 
