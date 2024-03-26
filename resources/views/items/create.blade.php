@@ -13,16 +13,18 @@
     </div>
 
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
+    @if ($errors->any())
+    <script>
+        window.onload = function() {
+            var errorMessage = 'Whoops! There were some problems with your input.';
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                errorMessage += '{{ $error }}';
             @endforeach
-        </ul>
-    </div>
-@endif
+            errorMessage += '';
+            alert(errorMessage);
+        }
+    </script>
+    @endif
 
 <form action="{{ route('items.product.store') }}" method="POST" enctype="multipart/form-data">
     @csrf

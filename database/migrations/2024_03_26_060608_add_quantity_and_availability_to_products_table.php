@@ -15,7 +15,7 @@ class AddQuantityAndAvailabilityToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->integer('quantity')->default(0); // You can change the default value as needed
-            $table->boolean('availability')->default(true); // Assuming availability is represented by a boolean value
+            $table->string('availability');
         });
     }
 

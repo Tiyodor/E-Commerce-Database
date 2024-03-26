@@ -4,8 +4,8 @@
 
   /* Navbar styles */
    .navbar {
-    background-color: rgba(248, 248, 248, 0.842);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 245, 245, 0.842);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.719);
     padding: 10px 20px;
     height: 70px;
     display: flex;
@@ -155,6 +155,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
+
 }
 
 .btn:hover {
@@ -178,12 +179,12 @@ body{
 }
 
 button{
-    padding: 20px 20px;
     text-align: center;
     font-family: "Bungee Hairline", sans-serif;
     font-weight: 1000;
     font-style: normal;
     border: none;
+    box-sizing: content-box;
 
   }
 /* login css */
@@ -249,14 +250,26 @@ button{
     font-size: 16px;
 }
 
+.login-input {
+    width: calc(100% - 20px); /* Adjust width to accommodate padding and border */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 18px;
+}
 .login-butt{
     display: flex;
     justify-content: space-evenly ;
     margin-left: 20px;
     padding: 20px;
 }
+
+
 .login-buttons {
     padding: 10px 20px;
+    position: relative;
+    text-align: center;
     background-color: #007bff;
     color: #fff;
     border-radius: 5px;
@@ -264,6 +277,9 @@ button{
     font-weight: 1000;
     font-style: normal;
     text-decoration: none;
+    width: 80px;
+    height: 50px;
+
 
 }
 
@@ -275,7 +291,7 @@ button{
 
 
 .form-container{
-    background-color: rgba(43, 32, 5, 0.555);
+    background-color: rgba(15, 11, 2, 0.555);
     box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
     margin: 5px;
     padding: 5px;
@@ -285,6 +301,9 @@ button{
     text-decoration: none;
     color: white;
     border-radius: 10px;
+    width: 99%;
+    max-width: 1900px;
+    height: 800px;
 
 }
 
@@ -413,6 +432,8 @@ button{
 		animation-timing-function: ease-in;
 	}
 }
+
+
 
 .left-side, .right-side {
     width: 45%; /* Adjust as needed */

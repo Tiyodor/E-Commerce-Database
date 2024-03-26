@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <div class="form-container">
+    <div class="edit-container">
       <div class="navbar">
         <div class="navbar-nav">
             <h2> Product details </h2>
@@ -30,7 +30,10 @@
         <div class="forms-label">
             <strong>Category: </strong>
             {{$product->category}}
-            <br>
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="forms-label">
             <strong>Price: </strong>
             {{$product->price}}
         </div>
@@ -42,7 +45,7 @@
         <div class="forms-label">
             <strong>Product Image: </strong>
             <br>
-            <img src="/images/{{ $product->product_image }}" width="600px">
+            <img src="/images/{{ $product->product_image }}" width="500px">
 
 
         </div>

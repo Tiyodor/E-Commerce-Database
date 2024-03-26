@@ -16,7 +16,7 @@
     <nav class="navbar">
         <a class="navbar-brand" href="/home">
             <!-- GUND<span>FACTORY</span> -->
-            <img src="/gundfactory.png" style="width: 300px;">
+            <img class="gundam" src="/gundfactory.png" style="width: 300px;">
         </a>
 
 

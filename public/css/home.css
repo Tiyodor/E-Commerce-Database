@@ -1,5 +1,5 @@
 .homecontainer {
-    margin-top: 5px;
+    margin-top: 10px;
     border-radius: 15px;
     padding: 10px;
     display: flex;
@@ -8,6 +8,8 @@
     background-color: rgba(0, 0, 0, 0.479);
 
 }
+
+
 
 .product-container,
 .user-container {
@@ -50,9 +52,9 @@
     text-decoration: none;
     display: inline-block;
     border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 10px; /* Adjust margin as needed */
-    margin-bottom: 10px;
+    padding: 5px;
+    margin-top: 5px; /* Adjust margin as needed */
+    margin-bottom: 5px;
     border-radius: 5px;
 }
 

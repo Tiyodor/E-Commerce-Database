@@ -15,8 +15,18 @@
 <form action="{{ route('update' ,$product->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    @if($errors->any())
-        {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
+
+    @if ($errors->any())
+    <script>
+        window.onload = function() {
+            var errorMessage = 'Whoops! There were some problems with your input.';
+            @foreach ($errors->all() as $error)
+                errorMessage += '{{ $error }}';
+            @endforeach
+            errorMessage += '';
+            alert(errorMessage);
+        }
+    </script>
     @endif
 
 <div class="row">
@@ -55,13 +65,13 @@
         <div class="form-group">
             <div class="forms-label">
                 <strong>Price: </strong>
-                <input type="text" name="price" value="{{ $product->price}}" class="form-input" placeholder="Price ">
+                <input type="text" name="price" value="{{ $product->price }}" class="form-input" placeholder="Price ">
             </div>
         </div>
         <div class="form-group">
             <div class="forms-label">
                 <strong>Quantity: </strong>
-                <input type="text" name="quantity" value="{{ $product->quantity}}" class="form-input" placeholder="Quantity ">
+                <input type="text" name="quantity" value="{{ $product->quantity }}" class="form-input" placeholder="Quantity ">
             </div>
         </div>
         </div>

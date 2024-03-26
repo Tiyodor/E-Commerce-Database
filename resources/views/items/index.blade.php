@@ -40,6 +40,7 @@
                 <td class="text-center">{{ $product->availability }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
+
                         <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>
                         <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>
                         @csrf
@@ -51,6 +52,7 @@
             @endforeach
         </tbody>
     </table>
+    <br>
 
     <div class="pagination">
         {!! $products->previousPageUrl() ? '<a href="' . $products->previousPageUrl() .  ' " class="btn-page">&lt; Previous</a>' : '' !!}
