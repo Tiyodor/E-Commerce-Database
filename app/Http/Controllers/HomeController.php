@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function index()
 {
     $users = User::latest()->paginate(4);
-    $products = Product::latest()->paginate(3);
+    $products = Product::latest()->paginate(4);
     $orders = Order::latest()->paginate(3);
 
     return view('home', compact('users', 'products', 'orders'));

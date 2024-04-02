@@ -30,6 +30,7 @@
         <tbody>
             @foreach ($products as $product)
             <tr>
+
                 <td class="text-center">{{ ++$i }}</td>
                 <td class="text-center">{{ $product->name }}</td>
                 <td class="text-center">{{ $product->details }}</td>
@@ -37,7 +38,7 @@
                 <td><img src="/images/{{ $product->product_image }}" width="145"  class="center" /></td>
                 <td class="text-center">Php {{ $product->price }}</td>
                 <td class="text-center">{{ $product->quantity }}</td>
-                <td class="text-center">{{ $product->quantity > 0 ? $product->availability : 'Sold Out' }}</td>
+                <td class="text-center">{{ $product->quantity > 0 ? $product->availability : 'Not Available' }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
 

@@ -14,7 +14,6 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Details</th>
                         <th class="text-center">Category</th>
                         <th class="text-center">Price</th>
                     </tr>
@@ -26,7 +25,6 @@
                     <tr>
                         <td class="text-center">{{ ++$i }}</td>
                         <td class="text-center">{{ $product->name }}</td>
-                        <td class="text-center">{{ $product->details }}</td>
                         <td class="text-center">{{ $product->category }}</td>
                         <td class="text-center">Php {{ $product->price }}</td>
 
