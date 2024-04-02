@@ -95,7 +95,7 @@ class ProductController extends Controller
             //delete old file in db after moving new file
 
         }else{
-           unlink($input['product_image']);
+           unset($input['product_image']);
         }
 
         $product->update($input);
@@ -152,11 +152,15 @@ class ProductController extends Controller
             ->with('success', 'Product restored successfully');
     }
 
-//     public function search(Request $request)
-// {
-//     $search = $request->input('search');
-//     $results = Product::where('name', 'like', "%$search%")->get();
-
-//     return view('items.index', ['results' => $results]);
-// }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $products = Product::where('name', 'like', '%'.$search.'%')
+                            ->orWhere('details', 'like', '%'.$search.'%')
+                            ->orWhere('category', 'like', '%'.$search.'%')
+                            ->paginate(10);
+    
+        return view('items.index', compact('products'));
+    }
+    
 }

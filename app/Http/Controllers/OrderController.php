@@ -27,7 +27,6 @@ class OrderController extends Controller
         return view('order.create', compact('products'));
     }
 
-
     public function store(Request $request)
     {
         // Validate the request data
@@ -38,7 +37,6 @@ class OrderController extends Controller
             'product.*' => 'exists:products,id', // Validate each product ID exists in the products table
             'payment' => 'required|string',
             'mod' => 'required|string',
-            'status' => 'required|string',
         ]);
 
         try
@@ -51,7 +49,7 @@ class OrderController extends Controller
             $order->address = $validatedData['address'];
             $order->payment = $validatedData['payment'];
             $order->mod = $validatedData['mod'];
-            $order->status = $validatedData['status'];
+            $order->status = 'processing'; // Set status to "processing" directly
             $order->save();
 
             // Attach selected products to the order
@@ -72,11 +70,9 @@ class OrderController extends Controller
         catch(Exception $e)
         {
             DB::rollback();
-            return redirect()->route('order.orders')->with('success', 'Something went wrong.');
+            return redirect()->route('order.orders')->with('error', 'Something went wrong.');
         }
-
     }
-
 
     /**
      * Display the specified resource.
@@ -113,9 +109,34 @@ class OrderController extends Controller
         return redirect()->route('order.orders')->with('success', 'Order updated successfully.');
     }
 
+ public function statusUpdate(Request $request, $id)
+{
+    $order = Order::findOrFail($id);
+    $order->update(['status' => $request->status]);
+
+    return redirect()->route('order.orders')->with('success', 'Order status updated successfully.');
+}
+
     /**
      * Remove the specified resource from storage.
      */
+
+     public function cancelDestroy(Order $order)
+{
+    DB::beginTransaction();
+
+    foreach ($order->products as $product) {
+        $product->increment('quantity', 1);
+    }
+
+    $order->forceDelete();
+
+    DB::commit();
+
+    return redirect()->route('order.orders')->with('success', 'Order cancellation successful.');
+}
+
+
     public function destroy(Order $order)
     {
         if($order->trashed()){

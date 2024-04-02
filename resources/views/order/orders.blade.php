@@ -42,13 +42,23 @@
                 <td class="text-center" id="total_{{ $order->id }}">Php {{ $order->total }}</td>
                 <td class="text-center">{{ $order->payment }}</td>
                 <td class="text-center">{{ $order->mod }}</td>
-                <td class="text-center">{{ $order->status }}</td>
+                <td class="text-center">
+                <form action="{{ route('order.update', $order->id) }}" method="POST">
+                      @csrf
+                      @method('PUT') <!-- Use PUT method for updating -->
+                     <select name="status" onchange="this.form.submit()">
+                         <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processing</option>
+                         <option value="ofd" {{ $order->status === 'ofd' ? 'selected' : '' }}>OFD (Out for Delivery)</option>
+                   </select>
+                </form>
+                </td>
+
                 <td class="text-center">
                     <form action="{{ route('order.destroy', $order->id) }}" method="POST">
                         <a class="btn" href="{{ route('order.show', $order->id) }}">Show</a>
                         <a class="btn" href="{{ route('order.edit', $order->id) }}">Edit</a>
                         @csrf
-                        @method('DELETE')
+                        @method('DELETE')   
                         <button type="submit" class="btn">Delivered</button>
                     </form>
                 </td>

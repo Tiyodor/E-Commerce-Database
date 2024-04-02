@@ -5,9 +5,15 @@
     <div class="navbar">
         <div class="navbar-nav">
             <h2>Inventory</h2>
-        </div>
+        </div> <div class="search-bar">
+    <form action="{{ route('items.search') }}" method="GET">
+        <input type="text" class="search-input" name="search" placeholder="Search products">
+        <button type="submit" class="btn">Search</button>
+    </form>
+</div>
         <div class="navbar-nav">
             <a class="general-btn" href="create">Add new product</a>
+           
 
             <a class="general-btn" href="archive">Archived product</a>
         </div>
@@ -28,29 +34,32 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($products as $product)
-            <tr>
+        @php
+    $i = 0;
+@endphp
 
-                <td class="text-center">{{ ++$i }}</td>
-                <td class="text-center">{{ $product->name }}</td>
-                <td class="text-center">{{ $product->details }}</td>
-                <td class="text-center">{{ $product->category }}</td>
-                <td><img src="/images/{{ $product->product_image }}" width="145"  class="center" /></td>
-                <td class="text-center">Php {{ $product->price }}</td>
-                <td class="text-center">{{ $product->quantity }}</td>
-                <td class="text-center">{{ $product->quantity > 0 ? $product->availability : 'Not Available' }}</td>
-                <td class="text-center">
-                    <form action="{{route('items.destroy', $product->id)}}" method="POST">
+        @foreach ($products as $product)
+    <tr>
+    <td class="text-center">{{ ++$i }}</td>
+    <td class="text-center">{{ $product->name }}</td>
+    <td class="text-center">{{ $product->details }}</td>
+    <td class="text-center">{{ $product->category }}</td>
+    <td><img src="/images/{{ $product->product_image }}" width="145" class="center" /></td>
+    <td class="text-center">Php {{ $product->price }}</td>
+    <td class="text-center">{{ $product->quantity }}</td>
+    <td class="text-center">{{ $product->quantity > 0 ? $product->availability : 'Not Available' }}</td>
+    <td class="text-center">
+        <form action="{{route('items.destroy', $product->id)}}" method="POST">
+            <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>
+            <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn">Archive</button>
+        </form>
+    </td>
+</tr>
+@endforeach
 
-                        <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>
-                        <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn">Archive</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
         </tbody>
     </table>
     <br>

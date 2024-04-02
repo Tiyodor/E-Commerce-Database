@@ -84,16 +84,7 @@
                     </div>
                 </div>
 
-                <div class="form-groups">
-                    <div class="forms-label">
-                        <strong>Status:</strong>
-                        <select name="status" class="form-input">
-                            <option value="processing">Processing</option>
-                            <option value="Ofd">Out for Delivery</option>
-                            <option value="Delivered">Delivered</option>
-                        </select>
-                    </div>
-                </div>
+                <!-- Removed Status form field -->
 
                 <div class="form-groups text-center">
                     <button type="submit" class="btn">Submit</button>
