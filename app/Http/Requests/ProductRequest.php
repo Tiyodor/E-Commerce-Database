@@ -24,11 +24,11 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required',
             'details' => 'required',
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'product_image' => 'required|sometimes|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'category' => 'required|in:SD,EG,HG,RG,MG,PG,HI-RES,1/100',
             'price' => 'required',
             'quantity' => 'required',
-            'availability' => 'required|in:Pre-order,Available,Sold Out',
+            'availability' => 'required|in:Pre-order,Available',
         ];
     }
 }

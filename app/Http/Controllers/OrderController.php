@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,13 +18,13 @@ class OrderController extends Controller
         return view('order.orders', compact('orders'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
-    
+
     public function create()
     {
         $products = Product::where('quantity', '>', 0)->get();
         return view('order.create', compact('products'));
     }
-    
+
 
     public function store(Request $request)
     {
@@ -39,7 +38,7 @@ class OrderController extends Controller
             'mod' => 'required|string',
             'status' => 'required|string',
         ]);
-    
+
         // Create order record
         $order = new Order();
         $order->name = $validatedData['name'];
@@ -48,21 +47,21 @@ class OrderController extends Controller
         $order->mod = $validatedData['mod'];
         $order->status = $validatedData['status'];
         $order->save();
-    
+
         // Attach selected products to the order
         $order->products()->attach($validatedData['product']);
-    
+
         // Reduce quantity of ordered products
         foreach ($validatedData['product'] as $productId) {
             $product = Product::find($productId);
             $product->quantity -= 1; // Assuming each order reduces the quantity by 1
             $product->save();
         }
-    
+
         // Redirect or return a response
         return redirect()->route('order.orders')->with('success', 'Order created successfully.');
     }
-    
+
 
     /**
      * Display the specified resource.

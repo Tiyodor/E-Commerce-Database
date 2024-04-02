@@ -24,26 +24,12 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'address' => 'required',
-            'product' => ['required', function ($attribute, $value, $fail) {
-                // Get array of valid product IDs
-                $productIds = Product::pluck('id')->toArray();
-
-                // Convert $value to an array if it's not already one
-                $selectedProducts = is_array($value) ? $value : [$value];
-
-                // Check each selected product ID
-                foreach ($selectedProducts as $productId) {
-                    if (!in_array($productId, $productIds)) {
-                        $fail('One or more selected products are invalid.');
-                    }
-                }
-            }],
-
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'product' => 'required|array',
+            'product.*' => 'exists:products,id', // Validate each product ID exists in the products table
             'payment' => 'required|in:COD,Bank,Gcash',
             'mod' => 'required|in:Shopee,Lalamove,J&T',
-            'total' => 'required|numeric|min:0',
             'status' => 'required|in:processing, Ofd, Delivered',
         ];
     }
@@ -53,11 +39,5 @@ class OrderRequest extends FormRequest
      *
      * @return array<string, string>
      */
-    public function messages(): array
-    {
-        return [
-            'product.required' => 'The product field is required.',
-            'product.in' => 'The selected product is invalid.',
-        ];
-    }
+
 }

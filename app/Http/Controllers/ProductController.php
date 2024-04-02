@@ -19,6 +19,7 @@ class ProductController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 4);
 
 
+
         //if api, return response()->json(['data' => $products],200);
     }
 

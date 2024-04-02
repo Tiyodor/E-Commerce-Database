@@ -37,7 +37,7 @@
                 <td><img src="/images/{{ $product->product_image }}" width="145"  class="center" /></td>
                 <td class="text-center">Php {{ $product->price }}</td>
                 <td class="text-center">{{ $product->quantity }}</td>
-                <td class="text-center">{{ $product->availability }}</td>
+                <td class="text-center">{{ $product->quantity > 0 ? $product->availability : 'Sold Out' }}</td>
                 <td class="text-center">
                     <form action="{{route('destroy', $product->id)}}" method="POST">
 

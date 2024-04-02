@@ -14,6 +14,14 @@
 <div class="row">
     <div class="form-group">
         <div class="forms-label">
+            <strong>Id: </strong>
+            {{$user->id}}
+        </div>
+    </div>
+                    {{-- <td class="text-center">{{ $user->id }}</td> --}}
+
+    <div class="form-group">
+        <div class="forms-label">
             <strong>Name: </strong>
             {{$user->name}}
         </div>

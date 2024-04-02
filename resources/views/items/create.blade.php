@@ -69,7 +69,6 @@
                  <select  name="availability" class="form-input">
                     <option value="Pre-order">Pre-order</option>
                     <option value="Available">Available</option>
-                    <option value="Sold Out">Sold Out</option>
                   </select>
                 </div>
 

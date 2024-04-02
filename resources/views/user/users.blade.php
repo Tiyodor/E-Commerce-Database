@@ -13,9 +13,18 @@
 
 
         @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{$message}}</p>
-        @endif
+    <div id="popup" class="alert alert-success">
+        <p class="text-white">{{$message}}</p>
+    </div>
+    <script>
+        // Automatically close the popup after 1 second
+        setTimeout(function(){
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }, 1000);
+    </script>
+@endif
+
 
     <table class="user-table">
         <tr>
@@ -28,7 +37,8 @@
 
         @foreach ($users as $user)
             <tr>
-                <td class="text-center">{{ $user->id }}</td>
+                <td class="text-center">{{ ++$i }}</td>
+                {{-- <td class="text-center">{{ $user->id }}</td> --}}
                 <td class="text-center">{{ $user->name }}</td>
                 <td class="text-center">{{ $user->address }}</td>
                 <td class="text-center">{{ $user->email }}</td>
@@ -45,6 +55,8 @@
             </tr>
         @endforeach
     </table>
+
+
 
     <div class="pagination">
         {!! $users->previousPageUrl() ? '<a href="' . $users->previousPageUrl() . '" class="btn-page">&lt; Previous</a>' : '' !!}
