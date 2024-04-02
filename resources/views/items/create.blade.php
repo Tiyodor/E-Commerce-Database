@@ -41,7 +41,7 @@
         <div class="form-groups">
             <div class="forms-label">
                 <strong>Detail:</strong>
-                <textarea class="form-input" style="height:50px" name="details" placeholder="Details"></textarea>
+                <input class="form-input" style="height:50px" name="details" placeholder="Details"></input>
             </div>
         </div>
 
@@ -74,7 +74,7 @@
 
             <div class="forms-label">
                 <strong>Quantity:</strong>
-                <textarea class="form-input" style="height:50px" name="quantity" placeholder="Quantity"></textarea>
+                <input class="form-input" style="height:50px" name="quantity" type="number" placeholder="Quantity"></input>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
         <div class="form-groups">
             <div class="forms-label">
                 <strong>Price:</strong>
-                <textarea class="form-input" style="height:50px" name="price" placeholder="Price"></textarea>
+                <input class="form-input" style="height:50px" name="price" type="number" placeholder="Price"></input>
             </div>
         </div>
 

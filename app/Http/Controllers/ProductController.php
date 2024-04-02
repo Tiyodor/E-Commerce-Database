@@ -48,7 +48,7 @@ class ProductController extends Controller
 
         if ($image = $request->file('product_image')) {
             $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
             $image->move($destinationPath, $profileImage);
             $input['product_image'] = "$profileImage";
         }
@@ -87,7 +87,7 @@ class ProductController extends Controller
         $input = $request->all();
         if ($image = $request->file('product_image')) {
             $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
             $image->move($destinationPath, $profileImage);
             $input['product_image'] = "$profileImage";
 
@@ -95,7 +95,7 @@ class ProductController extends Controller
             //delete old file in db after moving new file
 
         }else{
-            unset($input['product_image']);
+           unlink($input['product_image']);
         }
 
         $product->update($input);

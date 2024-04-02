@@ -40,7 +40,7 @@
                 <td class="text-center">{{ $product->quantity }}</td>
                 <td class="text-center">{{ $product->quantity > 0 ? $product->availability : 'Not Available' }}</td>
                 <td class="text-center">
-                    <form action="{{route('destroy', $product->id)}}" method="POST">
+                    <form action="{{route('items.destroy', $product->id)}}" method="POST">
 
                         <a class="btn" href="{{route('items.show',$product->id)}}">Show</a>
                         <a class="btn" href="{{route('items.edit',$product->id)}}">Edit</a>

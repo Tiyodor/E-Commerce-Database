@@ -42,7 +42,7 @@
 }
 
 .order-container {
-    width: 95%; /* Make sure order container takes full width */
+    width: 96.5%; /* Make sure order container takes full width */
     background-color: #4570e7;
     color: white;
     padding: 14px 25px;
@@ -60,10 +60,10 @@
 }
 
 .pulse {
-    animation: pulse 1s infinite ease-in-out alternate;
+    animation: pulse 1s  ease-in-out alternate;
   }
   @keyframes pulse {
-    from { transform: scale(0.98); }
+    from { transform: scale(0.5); }
     to { transform: scale(1); }
   }
 

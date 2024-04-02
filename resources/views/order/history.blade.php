@@ -44,14 +44,14 @@
                 <td class="text-center">{{ $order->mod }}</td>
                 <td class="text-center">{{ $order->status }}</td>
                 <td class="text-center">
-                    <form action="{{ route('destroyer', $order->id) }}" method="POST">
+                    <form action="{{ route('order.destroy', $order->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn">Delete</button>
                     </form>
                 </td>
                 <td >
-                    <form action="{{ route('restorer', $order->id) }}" method="POST">
+                    <form action="{{ route('order.restore', $order->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn">Restore</button>
                     </form>

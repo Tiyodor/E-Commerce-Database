@@ -36,7 +36,7 @@
                 <td><img src="/images/{{ $product->product_image }}" width="145"  class="center" /></td>
                 <td class="text-center">Php {{ $product->price }}</td>
                 <td class="text-center">
-                    <form action="{{route('destroy', $product->id)}}" method="POST">
+                    <form action="{{route('items.destroy', $product->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn">Delete</button>
@@ -44,7 +44,7 @@
 
                 </td>
                 <td>
-                    <form action="{{route('restore', $product->id)}}" method="POST">
+                    <form action="{{route('items.restore', $product->id)}}" method="POST">
                         @csrf
                         <button type="submit" class="btn">Restore</button>
                     </form>

@@ -12,7 +12,7 @@
   </div>
 
 
-<form action="{{ route('update' ,$product->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('items.update' ,$product->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -50,6 +50,7 @@
             <div class="forms-label">
                 <strong>Category:</strong>
                  <select  name="category" class="form-input" >
+                    <option value="{{$product->category}}"> {{ $product->category }} </option>
                     <option value="SD">SD</option>
                     <option value="EG">EG</option>
                     <option value="HG">HG</option>
@@ -83,6 +84,7 @@
             <div class="forms-label">
                 <strong>availability:</strong>
                  <select  name="availability" class="form-input">
+                    <option value="{{$product->availability}}"> {{ $product->availability }} </option>
                     <option value="Pre-order">Pre-order</option>
                     <option value="Available">Available</option>
                   </select>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class OrderController extends Controller
 {
@@ -13,10 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->paginate(5);
+        $orders = Order::latest()->paginate(7);
 
         return view('order.orders', compact('orders'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+            ->with('i', (request()->input('page', 1) - 1) * 7);
     }
 
     public function create()
@@ -39,27 +41,40 @@ class OrderController extends Controller
             'status' => 'required|string',
         ]);
 
-        // Create order record
-        $order = new Order();
-        $order->name = $validatedData['name'];
-        $order->address = $validatedData['address'];
-        $order->payment = $validatedData['payment'];
-        $order->mod = $validatedData['mod'];
-        $order->status = $validatedData['status'];
-        $order->save();
+        try
+        {
+            DB::beginTransaction();
 
-        // Attach selected products to the order
-        $order->products()->attach($validatedData['product']);
+            // Create order record
+            $order = new Order();
+            $order->name = $validatedData['name'];
+            $order->address = $validatedData['address'];
+            $order->payment = $validatedData['payment'];
+            $order->mod = $validatedData['mod'];
+            $order->status = $validatedData['status'];
+            $order->save();
 
-        // Reduce quantity of ordered products
-        foreach ($validatedData['product'] as $productId) {
-            $product = Product::find($productId);
-            $product->quantity -= 1; // Assuming each order reduces the quantity by 1
-            $product->save();
+            // Attach selected products to the order
+            $order->products()->attach($validatedData['product']);
+
+            // Reduce quantity of ordered products
+            foreach ($validatedData['product'] as $productId) {
+                $product = Product::find($productId);
+                $product->quantity -= 1; // Assuming each order reduces the quantity by 1
+                $product->save();
+            }
+
+            DB::commit();
+
+            // Redirect or return a response
+            return redirect()->route('order.orders')->with('success', 'Order created successfully.');
+        }
+        catch(Exception $e)
+        {
+            DB::rollback();
+            return redirect()->route('order.orders')->with('success', 'Something went wrong.');
         }
 
-        // Redirect or return a response
-        return redirect()->route('order.orders')->with('success', 'Order created successfully.');
     }
 
 
@@ -74,33 +89,34 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edits(Order $order)
+    public function edit(Order $order)
     {
         $products = Product::all();
-     return view('order.edits' ,compact('order'));
+        return view('order.edits' ,compact('order'));
     }
 
-
-    public function updates(Request $request, Order $order)
+    public function update(Request $request, Order $order)
     {
         $validatedData = $request->validate([
-
+            'payment' => 'required|string',
+            'mod' => 'required|string',
             'status' => 'required|string',
         ]);
 
-
-
+        // Assigning values individually
+        $order->payment = $validatedData['payment'];
+        $order->mod = $validatedData['mod'];
         $order->status = $validatedData['status'];
+
         $order->save();
 
-        return redirect()->route('order.orders')->with('success', 'Order created successfully.');
-
+        return redirect()->route('order.orders')->with('success', 'Order updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroyer(Order $order)
+    public function destroy(Order $order)
     {
         if($order->trashed()){
             $order->forceDelete();
@@ -113,7 +129,7 @@ class OrderController extends Controller
             ->with('success', 'Order removed');
     }
 
-    public function restorer(Order $order, Request $request)
+    public function restore(Order $order, Request $request)
     {
         $order->restore();
 

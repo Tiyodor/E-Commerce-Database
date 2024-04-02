@@ -44,9 +44,9 @@
                 <td class="text-center">{{ $order->mod }}</td>
                 <td class="text-center">{{ $order->status }}</td>
                 <td class="text-center">
-                    <form action="{{ route('destroyer', $order->id) }}" method="POST">
+                    <form action="{{ route('order.destroy', $order->id) }}" method="POST">
                         <a class="btn" href="{{ route('order.show', $order->id) }}">Show</a>
-                        <a class="btn" href="{{ route('order.edits', $order->id) }}">Edit</a>
+                        <a class="btn" href="{{ route('order.edit', $order->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn">Delivered</button>

@@ -8,6 +8,7 @@
             </div>
             <div class="navbar-nav">
                 <a class="general-btn" href="create_user">Manual Add user</a>
+                <a class="general-btn" href="{{ route('admin.register') }}">Add Admin</a>
             </div>
         </div>
 

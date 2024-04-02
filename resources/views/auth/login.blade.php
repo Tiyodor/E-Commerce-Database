@@ -38,7 +38,6 @@
 
                     <div class="login-butt">
                         <button type="submit" class="login-buttons">Login</button>
-                        <a href="{{ route('admin.register') }}" class="login-buttons">Register</a>
                     </div>
                 </form>
             </div>

@@ -12,7 +12,7 @@
   </div>
 
 
-<form action="{{ route('updates' ,$order->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('order.update' ,$order->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -30,10 +30,12 @@
     @endif
 
     <div class="row">
-        <div class="form-group">
+        <div class="form-groups">
             <div class="forms-label">
-                <strong>Name: </strong>
-                <input type="text" name="name" value="{{ $order->name}}" class="form-input" placeholder="Name">
+                <strong>Name:</strong>
+                @foreach ($order->products as $product)
+                        {{ $order->name }} <br>
+                    @endforeach
             </div>
         </div>
         <div class="form-groups">
@@ -83,8 +85,10 @@
             </div>
         </div>
         <div class="form-group text-center" >
-            <button type="submit" class="btn">Submit</button>
-    </div>
+            <button type="submit" class="btn" >Submit</button>
+            <button type="cancel" class="btn-cancel">Cancel Order</button>
+        </div>
+
     </div>
 </form>
 </div>

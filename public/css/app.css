@@ -162,6 +162,20 @@ body{
     background-color: #0056b3;
 }
 
+.btn-cancel {
+    padding: 5px 10px;
+    background-color: #ee2424;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+.btn-cancel:hover {
+    background-color: #b40c0c;
+}
+
 .btn-page {
     padding: 5px 10px;
     background-color: #007bff;
@@ -185,6 +199,7 @@ button{
     font-style: normal;
     border: none;
     box-sizing: content-box;
+    font-size: 16px;
 
   }
 /* login css */
@@ -192,7 +207,7 @@ button{
     width: 600px;
     height: 500px;
     border-radius: 15px;
-    background: rgb(247, 243, 243);
+    background: rgb(228, 241, 245);
     flex-direction: column;
     justify-content: center;
     align-items: center; /* Center horizontally and vertically */
@@ -218,7 +233,7 @@ button{
 
 
 .header {
-    background-color: rgba(255, 255, 255, 0.76);
+    background-color: rgba(209, 209, 209, 0.76);
     font-size: 35px;
     font-style: normal;
     text-align: center;
@@ -454,3 +469,11 @@ button{
 .right-side{
     position: fixed;
 }
+
+.pulse {
+    animation: pulse 2s infinite ease-in-out alternate;
+  }
+  @keyframes pulse {
+    from { transform: scale(0.98); }
+    to { transform: scale(1); }
+  }
