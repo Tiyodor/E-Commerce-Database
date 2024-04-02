@@ -28,6 +28,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('admin.register');
     Route::post('/register', [AuthController::class, 'register']);
+
 //home controller routes
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::resource('users', 'UserController');
@@ -46,6 +47,8 @@ Route::resource('products', 'ProductController');
     Route::delete('/{product}', [ProductController::class, 'destroy'])->name('items.destroy')->withTrashed();
     Route::post('/{product}', [ProductController::class, 'restore'])->name('items.restore')->withTrashed();
     Route::get('archive', [ProductController::class, 'retrieveSoftDeleted'])->name('items.archive');
+    // Route::get('/search', [ProductController::class, 'search'])->name('items.search');
+
 
 });
 

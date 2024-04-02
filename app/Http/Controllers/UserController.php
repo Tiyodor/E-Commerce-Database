@@ -35,10 +35,10 @@ class UserController extends Controller
      */
     public function users()
     {
-        $users = User::latest()->paginate(10);
+        $users = User::latest()->paginate(8);
 
         return view('user.users', compact('users'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+            ->with('i', (request()->input('page', 1) - 1) * 8);
     }
 
     /**

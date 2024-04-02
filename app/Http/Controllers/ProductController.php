@@ -151,4 +151,12 @@ class ProductController extends Controller
         return redirect()->route('items.index')
             ->with('success', 'Product restored successfully');
     }
+
+//     public function search(Request $request)
+// {
+//     $search = $request->input('search');
+//     $results = Product::where('name', 'like', "%$search%")->get();
+
+//     return view('items.index', ['results' => $results]);
+// }
 }
