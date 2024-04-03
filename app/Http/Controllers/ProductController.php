@@ -87,26 +87,39 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, Product $product)
-    {
-        $input = $request->all();
-        if ($image = $request->file('product_image')) {
-            $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
-            $image->move($destinationPath, $profileImage);
-            $input['product_image'] = "$profileImage";
+{
+    $input = $request->all();
 
+    // Check if there's a new image uploaded
+    if ($image = $request->file('product_image')) {
+        $destinationPath = 'images/';
+        $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
+        $image->move($destinationPath, $profileImage);
+        $input['product_image'] = $profileImage;
 
-            //delete old file in db after moving new file
-
-        }else{
-           unset($input['product_image']);
-        }
-
-        $product->update($input);
-
-        return redirect()->route('items.index')
-                        ->with('success','Product updated successfully');
+        // Delete the old image if it exists
+        $this->deleteExistingPhoto($product);
+    } else {
+        unset($input['product_image']);
     }
+
+    $product->update($input);
+
+    return redirect()->route('items.index')
+                     ->with('success', 'Product updated successfully');
+}
+
+private function deleteExistingPhoto(Product $product)
+{
+    // Delete existing photo if it exists
+    if ($product->product_image) {
+        $imagePath = public_path('images/') . $product->product_image;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+    }
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -116,8 +129,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        // Soft delete the product
         if($product->trashed()){
             $product->forceDelete();
+            $this->deleteAssociatedPhoto($product);
             return redirect()->route('items.index');
         }
 
@@ -127,11 +142,25 @@ class ProductController extends Controller
             ->with('success', 'Product Archived');
     }
 
+    private function deleteAssociatedPhoto(Product $product)
+    {
+        // Delete associated photo
+        if ($product->product_image) {
+            $imagePath = public_path('images/') . $product->product_image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+    }
+
+
+
     public function restore(Product $product, Request $request)
     {
         $product->restore();
 
         return redirect()->route('items.index');
+            -with('success', 'Product Restored');
     }
 
     public function retrieveSoftDeleted()

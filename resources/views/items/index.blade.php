@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-
+2
 
             @foreach ($products as $product)
             <tr>
@@ -76,7 +76,7 @@
             title: 'Success!',
             text: '{{ session('success') }}',
             showConfirmButton: false,
-            timer: 2000 // 2 seconds
+            timer: 3000 // 2 seconds
         });
     @endif
 </script>
