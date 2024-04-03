@@ -12,18 +12,6 @@
         </div>
     </div>
 
-    @if ($errors->any())
-    <script>
-        window.onload = function() {
-            var errorMessage = 'Whoops! There were some problems with your input.';
-            @foreach ($errors->all() as $error)
-                errorMessage += '{{ $error }}';
-            @endforeach
-            errorMessage += '';
-            alert(errorMessage);
-        }
-    </script>
-    @endif
 
     <form id="order-form" action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -87,7 +75,7 @@
                 <!-- Removed Status form field -->
 
                 <div class="form-groups text-center">
-                    <button type="submit" class="btn">Submit</button>
+                    <button type="submit" id="submitButton" class="btn">Submit</button>
                 </div>
 
             </div>
@@ -97,8 +85,28 @@
     </form>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
+    document.getElementById("submitButton").addEventListener("click", function() {
+
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, submit it!",
+            cancelButtonText: "No, cancel it"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("order-form").submit();
+            }
+        });
+    });
+</script>
+
+<script>
+
+
     document.getElementById('product').addEventListener('change', function() {
         var selectedProducts = this.selectedOptions;
         var totalPrice = 0;

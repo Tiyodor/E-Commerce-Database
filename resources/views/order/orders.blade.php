@@ -43,24 +43,28 @@
                 <td class="text-center">{{ $order->payment }}</td>
                 <td class="text-center">{{ $order->mod }}</td>
                 <td class="text-center">
-                <form action="{{ route('order.update', $order->id) }}" method="POST">
-                      @csrf
-                      @method('PUT') <!-- Use PUT method for updating -->
-                     <select name="status" onchange="this.form.submit()">
-                         <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processing</option>
-                         <option value="ofd" {{ $order->status === 'ofd' ? 'selected' : '' }}>OFD (Out for Delivery)</option>
-                   </select>
-                </form>
-                </td>
-
-                <td class="text-center">
-                    <form action="{{ route('order.destroy', $order->id) }}" method="POST">
-                        <a class="btn" href="{{ route('order.show', $order->id) }}">Show</a>
-                        <a class="btn" href="{{ route('order.edit', $order->id) }}">Edit</a>
+                    <form action="{{ route('order.statusUpdate', $order->id) }}" method="POST">
                         @csrf
-                        @method('DELETE')   
-                        <button type="submit" class="btn">Delivered</button>
+                        @method('PUT') <!-- Use PUT method for updating -->
+                        <select name="status" onchange="this.form.submit()">
+                            <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processing</option>
+                            <option value="ofd" {{ $order->status === 'ofd' ? 'selected' : '' }}>OFD (Out for Delivery)</option>
+                        </select>
                     </form>
+
+                    <td class="text-center">
+                        <form action="{{ route('order.destroy', $order->id) }}" method="POST">
+                            <a class="btn" href="{{ route('order.show', $order->id) }}">Show</a>
+                            @csrf
+                            @method('DELETE')
+
+                            <!-- Edit button with conditional disable -->
+                            <a class="btn {{ $order->status === 'ofd' ? 'disabled' : '' }}" href="{{ $order->status === 'processing' ? route('order.edit', $order->id) : '#' }}">Edit</a>
+
+                            <button type="submit" class="btn ">Delivered</button>
+                        </form>
+                    </td>
+
                 </td>
             </tr>
             @endforeach
@@ -71,6 +75,21 @@
         {!! $orders->previousPageUrl() ? '<a href="' . $orders->previousPageUrl() .  ' " class="btn-page">&lt; Previous</a>' : '' !!}
         {!! $orders->nextPageUrl() ? '<a href="' . $orders->nextPageUrl() . '" class="btn-page">Next &gt;</a>' : '' !!}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Check if the session variable 'success' is set
+        @if(session('success'))
+            // Display a SweetAlert with the success message
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000 // 2 seconds
+            });
+        @endif
+    </script>
 </div>
 
 <script>

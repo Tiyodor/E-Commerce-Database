@@ -147,7 +147,7 @@ class OrderController extends Controller
         $order->delete(); // Soft delete
 
         return redirect()->route('order.orders')
-            ->with('success', 'Order removed');
+            ->with('success', 'Order Complete');
     }
 
     public function restore(Order $order, Request $request)
@@ -175,8 +175,7 @@ class OrderController extends Controller
         $order = Order::onlyTrashed()->findOrFail($id);
         $order->restore(); // Restore the soft-deleted product
 
-        return redirect()->route('order.orders')
-            ->with('success', 'Product restored successfully');
+        return redirect()->route('order.orders')->with('success', 'Product restored successfully');
     }
 
     public function IncrementQty(Order $order)

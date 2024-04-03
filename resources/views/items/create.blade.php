@@ -12,21 +12,7 @@
         </div>
     </div>
 
-
-    @if ($errors->any())
-    <script>
-        window.onload = function() {
-            var errorMessage = 'Whoops! There were some problems with your input.';
-            @foreach ($errors->all() as $error)
-                errorMessage += '{{ $error }}';
-            @endforeach
-            errorMessage += '';
-            alert(errorMessage);
-        }
-    </script>
-    @endif
-
-<form action="{{ route('items.product.store') }}" method="POST" enctype="multipart/form-data">
+<form id="addProductForm" action="{{ route('items.product.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
      <div class="row">
@@ -93,7 +79,7 @@
         </div>
 
         <div class="form-groups text-center">
-                <button type="submit" class="btn">Submit</button>
+                <button type="button" id="submitButton" class="btn">Submit</button>
         </div>
     </div>
     </div>
@@ -101,5 +87,43 @@
 </form>
 </div>
 </div>
-@endsection
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    document.getElementById("submitButton").addEventListener("click", function() {
+        // Perform input validation
+        var name = document.getElementsByName("name")[0].value.trim();
+        var details = document.getElementsByName("details")[0].value.trim();
+        var quantity = document.getElementsByName("quantity")[0].value.trim();
+        var price = document.getElementsByName("price")[0].value.trim();
+
+        // Check if any of the required fields are blank
+        if (name === '' || details === '' || quantity === '' || price === '') {
+            Swal.fire({
+                title: "Invalid Input",
+                text: "Please fill out all required fields.",
+                icon: "error"
+            });
+            return;
+        }
+
+        // Additional validation if needed
+
+        // If all validation passes, prompt confirmation
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, submit it!",
+            cancelButtonText: "No, cancel it"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("addProductForm").submit();
+            }
+        });
+    });
+</script>
+
+
+@endsection

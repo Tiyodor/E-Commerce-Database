@@ -16,18 +16,7 @@
     @csrf
     @method('PUT')
 
-    @if ($errors->any())
-    <script>
-        window.onload = function() {
-            var errorMessage = 'Whoops! There were some problems with your input.';
-            @foreach ($errors->all() as $error)
-                errorMessage += '{{ $error }}';
-            @endforeach
-            errorMessage += '';
-            alert(errorMessage);
-        }
-    </script>
-    @endif
+
 
 <div class="row">
 

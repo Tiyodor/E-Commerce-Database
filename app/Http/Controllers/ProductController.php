@@ -120,7 +120,7 @@ class ProductController extends Controller
         $product->delete(); // Soft delete
 
         return redirect()->route('items.index')
-            ->with('success', 'Product removed');
+            ->with('success', 'Product Archived');
     }
 
     public function restore(Product $product, Request $request)
@@ -158,9 +158,9 @@ class ProductController extends Controller
         $products = Product::where('name', 'like', '%'.$search.'%')
                             ->orWhere('details', 'like', '%'.$search.'%')
                             ->orWhere('category', 'like', '%'.$search.'%')
-                            ->paginate(10);
-    
+                            ->paginate(4);
+
         return view('items.index', compact('products'));
     }
-    
+
 }

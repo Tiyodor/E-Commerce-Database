@@ -61,7 +61,7 @@ Route::resource('products', 'ProductController');
     Route::get('show/{order}', [OrderController::class, 'show'])->name('order.show');
     Route::get('edits/{order}', [OrderController::class, 'edit'])->name('order.edit');
     Route::put('edits/{order}', [OrderController::class, 'update'])->name('order.update');
-    Route::put('order/{id}', [OrderController::class, 'statusUpdate'])->name('order.update');
+    Route::put('order/{id}', [OrderController::class, 'statusUpdate'])->name('order.statusUpdate');
     Route::delete('/{order}', [OrderController::class, 'destroy'])->name('order.destroy')->withTrashed();
     Route::post('/{order}', [OrderController::class, 'restore'])->name('order.restore')->withTrashed();
     Route::get('history', [OrderController::class, 'retrieveSoftDelete'])->name('order.history');
