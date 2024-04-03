@@ -79,8 +79,11 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        return view('order.show' ,compact('order'));
+        $orders = Order::latest()->paginate(3);
+
+        return view('order.show', compact('order', 'orders'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,7 +91,9 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $products = Product::all();
-        return view('order.edits' ,compact('order'));
+        $orders = Order::latest()->paginate(3);
+
+        return view('order.edits' ,compact('order', 'orders'));
     }
 
     public function update(Request $request, Order $order)

@@ -39,8 +39,8 @@
 
     <div class="form-group">
         <div class="forms-label">
-            <strong class="" id="total_{{ $order->id }}">Total: </strong>
-            Php {{ $order->total }}
+            <strong class="" id="total_{{ $order->id }}"></strong>
+
         </div>
     </div>
 
@@ -77,7 +77,7 @@
     </div>
 </div>
 
-{{-- <script>
+<script>
 
     // Calculate and display total price for each order
     @foreach ($orders as $order)
@@ -88,5 +88,5 @@
         document.getElementById('total_{{ $order->id }}').innerHTML = 'Php ' + total_{{ $order->id }}.toFixed(2);
     @endforeach
 
-</script> --}}
+</script>
 @endsection

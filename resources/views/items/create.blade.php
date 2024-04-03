@@ -92,13 +92,11 @@
 
 <script>
     document.getElementById("submitButton").addEventListener("click", function() {
-        // Perform input validation
         var name = document.getElementsByName("name")[0].value.trim();
         var details = document.getElementsByName("details")[0].value.trim();
         var quantity = document.getElementsByName("quantity")[0].value.trim();
         var price = document.getElementsByName("price")[0].value.trim();
 
-        // Check if any of the required fields are blank
         if (name === '' || details === '' || quantity === '' || price === '') {
             Swal.fire({
                 title: "Invalid Input",
@@ -108,9 +106,7 @@
             return;
         }
 
-        // Additional validation if needed
 
-        // If all validation passes, prompt confirmation
         Swal.fire({
             title: "Are you sure?",
             icon: "question",

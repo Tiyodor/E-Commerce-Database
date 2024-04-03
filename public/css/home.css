@@ -26,6 +26,8 @@
     font-weight: 1000;
     font-style: normal;
     text-decoration: none;
+    user-select: none;
+
     display: inline-block;
     border-radius: 5px;
 }
@@ -44,6 +46,8 @@
 .order-container {
     width: 96.5%; /* Make sure order container takes full width */
     background-color: #4570e7;
+    user-select: none;
+
     color: white;
     padding: 14px 25px;
     text-align: center;

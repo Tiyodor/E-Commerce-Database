@@ -81,6 +81,19 @@
     </form>
 </div>
 
+
+<script>
+
+    @foreach ($orders as $order)
+        var total_{{ $order->id }} = 0;
+        @foreach ($order->products as $product)
+            total_{{ $order->id }} += parseFloat("{{ $product->price }}");
+        @endforeach
+        document.getElementById('total_{{ $order->id }}').innerHTML = 'Php ' + total_{{ $order->id }}.toFixed(2);
+    @endforeach
+
+</script>
+
 <script>
     function cancelOrder() {
         fetch('{{ route('order.cancelDestroy', $order->id) }}', {

@@ -21,7 +21,9 @@ body{
     background-color: #e6e5c6;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden ;
+    user-select: none;
+
+    /* overflow: hidden ; */
 
 
 }

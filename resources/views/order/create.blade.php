@@ -85,11 +85,23 @@
     </form>
 
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
     document.getElementById("submitButton").addEventListener("click", function() {
 
+        var name = document.getElementsByName("name")[0].value.trim();
+        var address = document.getElementsByName("address")[0].value.trim();
+
+        if (name === '' || address === '') {
+            Swal.fire({
+                title: "Invalid Input",
+                text: "Please fill out all required fields.",
+                icon: "error"
+            });
+            return;
+        }
         Swal.fire({
             title: "Are you sure?",
             icon: "question",
@@ -105,8 +117,6 @@
 </script>
 
 <script>
-
-
     document.getElementById('product').addEventListener('change', function() {
         var selectedProducts = this.selectedOptions;
         var totalPrice = 0;
