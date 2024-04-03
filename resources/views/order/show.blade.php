@@ -13,12 +13,14 @@
 
 
 <div class="rows">
+    <div class="left-side">
     <div class="form-group">
         <div class="forms-label">
             <strong>Name: </strong>
             {{$order->name}}
         </div>
     </div>
+
     <div class="form-group">
         <div class="forms-label">
             <strong>Items: </strong>
@@ -27,35 +29,51 @@
         @endforeach
         </div>
     </div>
+
     <div class="form-group">
         <div class="forms-label">
             <strong>Address: </strong>
             {{$order->address}}
         </div>
     </div>
+
     <div class="form-group">
         <div class="forms-label">
             <strong class="" id="total_{{ $order->id }}">Total: </strong>
             Php {{ $order->total }}
         </div>
     </div>
+
     <div class="form-group">
         <div class="forms-label">
             <strong>Mode of payment: </strong>
             {{$order->payment }}
         </div>
     </div>
+
     <div class="form-group">
         <div class="forms-label">
             <strong>Mode of Delivery: </strong>
             {{$order->mod}}
         </div>
     </div>
+    </div>
+
+    <div class="right-side">
     <div class="form-group">
         <div class="forms-label">
             <strong>status: </strong>
             {{$order->status}}
         </div>
+    </div>
+
+    <div class="form-group">
+        <div class="forms-label">
+            <strong>Product Image: </strong>
+            <br>
+            <img src="/images/{{ $product->product_image }}" width="500px">
+        </div>
+    </div>
     </div>
 </div>
 

@@ -46,10 +46,9 @@
             <strong>Product Image: </strong>
             <br>
             <img src="/images/{{ $product->product_image }}" width="500px">
-
-
         </div>
     </div>
+
 </div>
 </div>
 @endsection

@@ -36,7 +36,7 @@
                         <strong>Product:</strong>
                         <select id="product" name="product[]" class="form-input" multiple>
                             @foreach($products as $product)
-                            <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->name }} | {{ $product->category }} | {{ $product->price }} | {{ $product->quantity }} | {{ $product->availability }}</option>
+                            <option  value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->name }} | {{ $product->category }} | {{ $product->price }} | {{ $product->quantity }} | {{ $product->availability }}</option>
                             @endforeach
                         </select>
                     </div>

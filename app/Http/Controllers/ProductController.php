@@ -23,8 +23,6 @@ class ProductController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 4);
 
 
-
-        //if api, return response()->json(['data' => $products],200);
     }
 
     /**
@@ -90,14 +88,12 @@ class ProductController extends Controller
 {
     $input = $request->all();
 
-    // Check if there's a new image uploaded
     if ($image = $request->file('product_image')) {
         $destinationPath = 'images/';
         $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
         $image->move($destinationPath, $profileImage);
         $input['product_image'] = $profileImage;
 
-        // Delete the old image if it exists
         $this->deleteExistingPhoto($product);
     } else {
         unset($input['product_image']);
@@ -111,7 +107,6 @@ class ProductController extends Controller
 
 private function deleteExistingPhoto(Product $product)
 {
-    // Delete existing photo if it exists
     if ($product->product_image) {
         $imagePath = public_path('images/') . $product->product_image;
         if (file_exists($imagePath)) {
@@ -129,14 +124,13 @@ private function deleteExistingPhoto(Product $product)
      */
     public function destroy(Product $product)
     {
-        // Soft delete the product
         if($product->trashed()){
             $product->forceDelete();
             $this->deleteAssociatedPhoto($product);
             return redirect()->route('items.index');
         }
 
-        $product->delete(); // Soft delete
+        $product->delete();
 
         return redirect()->route('items.index')
             ->with('success', 'Product Archived');
@@ -144,7 +138,6 @@ private function deleteExistingPhoto(Product $product)
 
     private function deleteAssociatedPhoto(Product $product)
     {
-        // Delete associated photo
         if ($product->product_image) {
             $imagePath = public_path('images/') . $product->product_image;
             if (file_exists($imagePath)) {
@@ -165,7 +158,7 @@ private function deleteExistingPhoto(Product $product)
 
     public function retrieveSoftDeleted()
     {
-        $products = Product::onlyTrashed()->get(); // Retrieve only soft-deleted products
+        $products = Product::onlyTrashed()->get();
 
         return view('items.archive', compact('products'));
     }
@@ -179,7 +172,7 @@ private function deleteExistingPhoto(Product $product)
     public function restoreSoftDeleted($id)
     {
         $product = Product::onlyTrashed()->findOrFail($id);
-        $product->restore(); // Restore the soft-deleted product
+        $product->restore();
 
         return redirect()->route('items.index')
             ->with('success', 'Product restored successfully');
