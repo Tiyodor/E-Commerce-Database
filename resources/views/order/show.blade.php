@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
         <div class="forms-label">
-            <strong class=" id="total_{{ $order->id }}">Total: </strong>
+            <strong class="" id="total_{{ $order->id }}">Total: </strong>
             Php {{ $order->total }}
         </div>
     </div>

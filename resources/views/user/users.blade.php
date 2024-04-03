@@ -13,20 +13,6 @@
         </div>
 
 
-        @if ($message = Session::get('success'))
-    <div id="popup" class="alert alert-success">
-        <p class="text-white">{{$message}}</p>
-    </div>
-    <script>
-        // Automatically close the popup after 1 second
-        setTimeout(function(){
-            var popup = document.getElementById('popup');
-            popup.style.display = 'none';
-        }, 1000);
-    </script>
-@endif
-
-
     <table class="user-table">
         <tr>
             <th>Id</th>
@@ -63,5 +49,20 @@
         {!! $users->previousPageUrl() ? '<a href="' . $users->previousPageUrl() . '" class="btn-page">&lt; Previous</a>' : '' !!}
         {!! $users->nextPageUrl() ? '<a href="' . $users->nextPageUrl() . '" class="btn-page">Next &gt;</a>' : '' !!}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        @endif
+    </script>
+</div>
+
         </div>
 @endsection

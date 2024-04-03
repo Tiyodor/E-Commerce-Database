@@ -29,12 +29,11 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required|string',
             'address' => 'required|string',
             'product' => 'required|array',
-            'product.*' => 'exists:products,id', // Validate each product ID exists in the products table
+            'product.*' => 'exists:products,id',
             'payment' => 'required|string',
             'mod' => 'required|string',
         ]);
@@ -43,40 +42,41 @@ class OrderController extends Controller
         {
             DB::beginTransaction();
 
-            // Create order record
+            Product::lockForUpdate()->whereIn('id', $validatedData['product'])->get();
+
+            $products = Product::whereIn('id', $validatedData['product'])->where('quantity', '>', 0)->get();
+
+            if ($products->count() !== count($validatedData['product'])) {
+                throw new Exception("Some selected products are out of stock.");
+            }
+
             $order = new Order();
             $order->name = $validatedData['name'];
             $order->address = $validatedData['address'];
             $order->payment = $validatedData['payment'];
             $order->mod = $validatedData['mod'];
-            $order->status = 'processing'; // Set status to "processing" directly
+            $order->status = 'processing';
             $order->save();
 
-            // Attach selected products to the order
             $order->products()->attach($validatedData['product']);
 
-            // Reduce quantity of ordered products
             foreach ($validatedData['product'] as $productId) {
                 $product = Product::find($productId);
-                $product->quantity -= 1; // Assuming each order reduces the quantity by 1
+                $product->quantity -= 1;
                 $product->save();
             }
 
             DB::commit();
 
-            // Redirect or return a response
             return redirect()->route('order.orders')->with('success', 'Order created successfully.');
         }
         catch(Exception $e)
         {
             DB::rollback();
-            return redirect()->route('order.orders')->with('error', 'Something went wrong.');
+            return redirect()->route('order.orders')->with('error', $e->getMessage());
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Order $order)
     {
         return view('order.show' ,compact('order'));

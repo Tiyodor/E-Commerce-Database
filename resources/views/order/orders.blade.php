@@ -45,8 +45,8 @@
                 <td class="text-center">
                     <form action="{{ route('order.statusUpdate', $order->id) }}" method="POST">
                         @csrf
-                        @method('PUT') <!-- Use PUT method for updating -->
-                        <select name="status" onchange="this.form.submit()">
+                        @method('PUT')
+                        <select name="status" class="dropdown" onchange="this.form.submit()">
                             <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processing</option>
                             <option value="ofd" {{ $order->status === 'ofd' ? 'selected' : '' }}>OFD (Out for Delivery)</option>
                         </select>
@@ -58,7 +58,6 @@
                             @csrf
                             @method('DELETE')
 
-                            <!-- Edit button with conditional disable -->
                             <a class="btn {{ $order->status === 'ofd' ? 'disabled' : '' }}" href="{{ $order->status === 'processing' ? route('order.edit', $order->id) : '#' }}">Edit</a>
 
                             <button type="submit" class="btn ">Delivered</button>
@@ -78,15 +77,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // Check if the session variable 'success' is set
         @if(session('success'))
-            // Display a SweetAlert with the success message
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
                 text: '{{ session('success') }}',
                 showConfirmButton: false,
-                timer: 2000 // 2 seconds
+                timer: 2000
             });
         @endif
     </script>
@@ -94,7 +91,6 @@
 
 <script>
 
-    // Calculate and display total price for each order
     @foreach ($orders as $order)
         var total_{{ $order->id }} = 0;
         @foreach ($order->products as $product)

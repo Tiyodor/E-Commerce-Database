@@ -67,7 +67,7 @@
     to { transform: scale(1); }
   }
 
-  .grow {
+  .grow1 {
     animation: grow 1s ease;
   }
   @keyframes grow {

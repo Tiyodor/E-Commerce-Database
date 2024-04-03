@@ -33,7 +33,6 @@ body{
     font-weight: 1000;
     font-size: 35px;
     font-style: normal;
-    text-shadow: 2px 2px royalblue;
     letter-spacing: 0.1em;
 }
 
@@ -41,9 +40,9 @@ body{
     display: flex;
     list-style-type: none;
     margin: 0;
-    text-shadow: 1px 1px #000000;
-    color: white;
+    text-shadow: 2px 2px #000000;
     font-family: "Bungee Hairline", sans-serif;
+    color: white;
     font-weight: 1000;
     font-size: 30px;
     font-style: normal;
@@ -52,20 +51,22 @@ body{
 
 }
 
+
+
 .nav-item {
     margin-right: 30px;
 }
 
 .nav-link {
     text-decoration: none;
-    color: #555;
+    color: #5690fc;
     font-size: 1.9rem;
-    font-family: "Bungee Hairline", sans-serif;
-  font-weight: 1000;
+    font-family: "MuseoModerno", sans-serif;
+    font-weight: 1000;
 }
 
 .nav-link:hover {
-    color: #000;
+    color: #335697;
 }
 
 .general-btn {
@@ -485,4 +486,23 @@ button{
   @keyframes pulse {
     from { transform: scale(0.98); }
     to { transform: scale(1); }
+  }
+
+  .dropdown{
+    font-family: "Bungee Hairline", sans-serif;
+    text-align: center;
+    font-weight: 1000;
+    font-style: normal;
+    background-color: transparent;
+    color: white;
+    border: none;
+  }
+  .dropdown option{
+    font-family: "Bungee Hairline", sans-serif;
+    text-align: center;
+    font-weight: 1000;
+    font-style: normal;
+    background-color: transparent;
+    color: black;
+    border: none;
   }
