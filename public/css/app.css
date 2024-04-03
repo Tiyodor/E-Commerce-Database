@@ -63,11 +63,13 @@ body{
     font-size: 1.9rem;
     font-family: "MuseoModerno", sans-serif;
     font-weight: 1000;
+
 }
 
 .nav-link:hover {
-    color: #335697;
+    color: #4e7ed6;
 }
+
 
 .general-btn {
     background-color: #e0c83d;
@@ -309,7 +311,7 @@ button{
 }
 
 .login-buttons:hover {
-    background-color: #0056b3;
+    background-color: #226fc2;
 }
 
 /*forms css */

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 
 class ProductController extends Controller
 {
@@ -13,6 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $response = Http::get('https://jsonplaceholder.typicode.com/posts');
+        $posts = $response->json();
         $products = Product::latest()->paginate(4);
 
         return view('items.index', compact('products'))

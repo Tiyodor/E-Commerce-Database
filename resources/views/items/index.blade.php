@@ -33,9 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            @php
-                $i = 0;
-            @endphp
+
 
             @foreach ($products as $product)
             <tr>
