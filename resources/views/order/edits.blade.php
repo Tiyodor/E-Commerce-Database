@@ -38,6 +38,14 @@
                     <div id="total_{{ $order->id }}" style="height:50px"> {{ $order->total }}</</div>
                 </div>
             </div>
+
+            <div class="form-groups">
+                <div class="forms-label">
+                    <strong>Status:</strong>
+                        <a value="{{ $order->status }}">{{ $order->status }}</a>
+                </div>
+            </div>
+
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Payment Method:</strong>
@@ -62,17 +70,7 @@
                 </div>
             </div>
 
-            <div class="form-groups">
-                <div class="forms-label">
-                    <strong>Status:</strong>
-                    <select name="status" class="form-input">
-                        <option value="{{ $order->status }}">{{ $order->status }}</option>
-                        <option value="processing">Processing</option>
-                        <option value="Ofd">Out for Delivery</option>
-                        <option value="Delivered">Delivered</option>
-                    </select>
-                </div>
-            </div>
+
             <div class="form-group text-center">
                 <button type="submit" class="btn">Submit</button>
                 <button type="button" class="btn-cancel" onclick="cancelOrder()">Cancel Order</button>

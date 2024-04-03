@@ -101,13 +101,11 @@ class OrderController extends Controller
         $validatedData = $request->validate([
             'payment' => 'required|string',
             'mod' => 'required|string',
-            'status' => 'required|string',
         ]);
 
         // Assigning values individually
         $order->payment = $validatedData['payment'];
         $order->mod = $validatedData['mod'];
-        $order->status = $validatedData['status'];
 
         $order->save();
 
