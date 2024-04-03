@@ -24,6 +24,7 @@
                     @endforeach
                 </div>
             </div>
+
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Items:</strong>
@@ -32,6 +33,7 @@
                     @endforeach
                 </div>
             </div>
+
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Total: Php</strong>
