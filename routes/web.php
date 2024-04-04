@@ -81,7 +81,9 @@ Route::resource('products', 'ProductController');
         Route::get('show_user/{user}', [UserController::class, 'show_user'])->name('user.show_user');
         Route::get('edit_user/{user}', [UserController::class, 'edit_user'])->name('user.edit_user');
         Route::put('edit_user/{user}', [UserController::class, 'update_user'])->name('update_user');
-        Route::delete('users/{user}', [UserController::class, 'destroy_user'])->name('destroy_user');
+        Route::delete('/{user}', [UserController::class, 'destroy_user'])->name('user.destroy_user')->withTrashed();
+        Route::post('/{user}', [UserController::class, 'restore'])->name('user.restore')->withTrashed();
+        Route::get('archive', [UserController::class, 'retrieveSoftDelete'])->name('user.archive');
     });
 
     //Format For Web Routes (Get data from controller, pass to blade)

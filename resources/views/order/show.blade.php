@@ -79,7 +79,6 @@
 
 <script>
 
-    // Calculate and display total price for each order
     @foreach ($orders as $order)
         var total_{{ $order->id }} = 0;
         @foreach ($order->products as $product)

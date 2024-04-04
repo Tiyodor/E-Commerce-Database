@@ -7,8 +7,10 @@
                 <h2>User Management</h2>
             </div>
             <div class="navbar-nav">
-                <a class="general-btn" href="create_user">Manual Add user</a>
+                <a class="general-btn" href="create_user"> Manual Add User</a>
                 <a class="general-btn" href="{{ route('admin.register') }}">Add Admin</a>
+                <a class="general-btn" href="archive">Archived Users</a>
+
             </div>
         </div>
 
@@ -30,7 +32,7 @@
                 <td class="text-center">{{ $user->address }}</td>
                 <td class="text-center">{{ $user->email }}</td>
                 <td class="text-center">
-                    <form action="{{route('destroy_user', $user->id)}}" method="POST">
+                    <form action="{{route('user.destroy_user', $user->id)}}" method="POST">
                         <a class="btn" href="{{route('user.show_user',$user->id)}}">Show</a>
                         <a class="btn" href="{{route('user.edit_user',$user->id)}}">Edit</a>
                         @csrf

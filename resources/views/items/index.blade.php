@@ -13,8 +13,8 @@
             </form>
         </div>
         <div class="navbar-nav">
-            <a class="general-btn" href="create">Add new product</a>
-            <a class="general-btn" href="archive">Archived product</a>
+            <a class="general-btn" href="create">Add New Product</a>
+            <a class="general-btn" href="archive">Archived Product</a>
         </div>
     </div>
 

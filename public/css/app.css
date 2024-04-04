@@ -42,9 +42,9 @@ body{
     display: flex;
     list-style-type: none;
     margin: 0;
-    text-shadow: 2px 2px #000000;
+    text-shadow: 2px 2px 6px #000000;
     font-family: "Bungee Hairline", sans-serif;
-    color: white;
+    color: black;
     font-weight: 1000;
     font-size: 30px;
     font-style: normal;
@@ -61,11 +61,11 @@ body{
 
 .nav-link {
     text-decoration: none;
-    color: #5690fc;
+    color: #548ef8;
     font-size: 1.9rem;
     font-family: "MuseoModerno", sans-serif;
     font-weight: 1000;
-
+    -webkit-text-stroke: 1.5px #000000;
 }
 
 .nav-link:hover {

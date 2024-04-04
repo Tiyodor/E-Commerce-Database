@@ -87,45 +87,50 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
 <script>
-    document.getElementById("submitButton").addEventListener("click", function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("submitButton").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
 
-        var name = document.getElementsByName("name")[0].value.trim();
-        var address = document.getElementsByName("address")[0].value.trim();
+            var name = document.getElementsByName("name")[0].value.trim();
+            var address = document.getElementsByName("address")[0].value.trim();
+            var selectedProducts = document.querySelectorAll('#product option:checked');
 
-        if (name === '' || address === '') {
-            Swal.fire({
-                title: "Invalid Input",
-                text: "Please fill out all required fields.",
-                icon: "error"
-            });
-            return;
-        }
-        Swal.fire({
-            title: "Are you sure?",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonText: "Yes, submit it!",
-            cancelButtonText: "No, cancel it"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("order-form").submit();
+            if (name === '' || address === '' || selectedProducts.length === 0) {
+                Swal.fire({
+                    title: "Invalid Input",
+                    text: "Please fill out all required fields.",
+                    icon: "error"
+                });
+                return;
             }
+
+            Swal.fire({
+                title: "Are you sure?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, submit it!",
+                cancelButtonText: "No, cancel it"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("order-form").submit();
+                }
+            });
+        });
+
+        document.getElementById('product').addEventListener('change', function() {
+            var selectedProducts = this.selectedOptions;
+            var totalPrice = 0;
+            for (var i = 0; i < selectedProducts.length; i++) {
+                var price = parseFloat(selectedProducts[i].getAttribute('data-price'));
+                totalPrice += price;
+            }
+            document.getElementById('total').innerHTML = '<strong>Total: Php ' + totalPrice.toFixed(2) + '</strong>';
         });
     });
 </script>
 
-<script>
-    document.getElementById('product').addEventListener('change', function() {
-        var selectedProducts = this.selectedOptions;
-        var totalPrice = 0;
-        for (var i = 0; i < selectedProducts.length; i++) {
-            var price = parseFloat(selectedProducts[i].getAttribute('data-price'));
-            totalPrice += price;
-        }
-        document.getElementById('total').innerHTML = '<strong>Total: Php ' + totalPrice.toFixed(2) + '</strong>';
-    });
-</script>
+
+
 
 @endsection

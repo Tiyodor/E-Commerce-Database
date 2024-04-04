@@ -117,9 +117,41 @@ class UserController extends Controller
      */
     public function destroy_user(User $user)
     {
+        if($user->trashed()){
+            $user->forceDelete();
+            return redirect()->route('user.users');
+        }
         $user->delete();
 
         return redirect()->route('user.users')
                         ->with('success', 'User removed successfully');
+    }
+
+    public function restore(User $user, Request $request)
+    {
+        $user->restore();
+
+        return redirect()->route('user.users');
+    }
+
+    public function retrieveSoftDelete()
+    {
+        $users = User::onlyTrashed()->get(); // Retrieve only soft-deleted products
+
+        return view('user.archive', compact('users'));
+    }
+
+    /**
+     * Restore the specified soft-deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreSoftDeleted($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore(); // Restore the soft-deleted product
+
+        return redirect()->route('user.users')->with('success', 'Product restored successfully');
     }
 }
