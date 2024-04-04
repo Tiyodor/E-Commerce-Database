@@ -96,25 +96,51 @@
 
 <script>
     function cancelOrder() {
-        fetch('{{ route('order.cancelDestroy', $order->id) }}', {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json'
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to cancel the order!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('{{ route('order.cancelDestroy', $order->id) }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        Swal.fire(
+                            'Cancelled!',
+                            'Your order has been cancelled.',
+                            'success'
+                        );
+                        window.location.href = '{{ route('order.orders') }}';
+                    } else {
+                        console.error('Failed to cancel order.');
+                        Swal.fire(
+                            'Error!',
+                            'Failed to cancel order.',
+                            'error'
+                        );
+                        window.location.href = '{{ route('order.orders') }}'; // Reroute even if cancellation fails
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire(
+                        'Error!',
+                        'Failed to cancel order.',
+                        'error'
+                    );
+                    window.location.href = '{{ route('order.orders') }}';
+                });
             }
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = '{{ route('order.orders') }}';
-            } else {
-                console.error('Failed to cancel order.');
-                window.location.href = '{{ route('order.orders') }}'; // Reroute even if cancellation fails
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to cancel order.');
-            window.location.href = '{{ route('order.orders') }}';
         });
     }
 </script>

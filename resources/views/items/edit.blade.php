@@ -101,4 +101,24 @@
 </form>
 </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('submitButton').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to submit the form!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, submit it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('editForm').submit();
+                }
+            });
+        });
+    });
+</script>
 @endsection
