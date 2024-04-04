@@ -36,8 +36,8 @@
 
             <div class="form-groups">
                 <div class="forms-label">
-                    <strong>Total: Php</strong>
-                    <div id="total_{{ $order->id }}" style="height:50px"> {{ $order->total }}</</div>
+                    <strong>Total:</strong>
+                    <div id="total_{{ $order->id }}" > {{ $order->total }}</</div>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Payment Method:</strong>
-                    <select name="payment" class="form-input">
+                    <select name="payment" class="form-input " style="width: 15%">
                         <option value="{{ $order->payment }}">{{ $order->payment }}</option>
                         <option value="COD">Cash on Delivery</option>
                         <option value="Bank">Bpi, Bpo, Metrobank, Etc</option>
@@ -63,7 +63,7 @@
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Mode of Delivery:</strong>
-                    <select name="mod" class="form-input">
+                    <select name="mod" class="form-input" style="width: 15%">
                         <option value="{{ $order->mod }}">{{ $order->mod }}</option>
                         <option value="J&T">J&T</option>
                         <option value="Lalamove">Lalamove</option>

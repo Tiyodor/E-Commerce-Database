@@ -38,7 +38,7 @@
         <div class="form-groups">
             <div class="forms-label">
                 <strong>Category:</strong>
-                 <select  name="category" class="form-input" >
+                 <select  name="category" class="form-input" style="width: 75%">
                     <option value="{{$product->category}}"> {{ $product->category }} </option>
                     <option value="SD">SD</option>
                     <option value="EG">EG</option>
@@ -64,21 +64,23 @@
                 <input  name="quantity" type="number" value="{{ $product->quantity }}" class="form-input" placeholder="Quantity ">
             </div>
         </div>
-        </div>
-
-        <div class="right-side">
 
 
         <div class="form-groups">
             <div class="forms-label">
                 <strong>availability:</strong>
-                 <select  name="availability" class="form-input">
+                 <select  name="availability" class="form-input" style="width: 70%">
                     <option value="{{$product->availability}}"> {{ $product->availability }} </option>
                     <option value="Pre-order">Pre-order</option>
                     <option value="Available">Available</option>
                   </select>
             </div>
         </div>
+        </div>
+
+        <div class="right-side">
+
+
 
         <div class="form-group">
             <div class="forms-label">
@@ -87,7 +89,7 @@
 
                  <br>
                  <br>
-                <img src="/images/{{ $product->product_image }}" width="300px">
+                <img src="/images/{{ $product->product_image }}" width="500px">
             </div>
         </div>
 

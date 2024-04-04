@@ -53,7 +53,7 @@
                 <div class="form-groups">
                     <div class="forms-label">
                         <strong>Payment Method:</strong>
-                        <select name="payment" class="form-input">
+                        <select name="payment" class="form-input" style="width: 25%">
                             <option value="COD">Cash on Delivery</option>
                             <option value="Bank">Bpi, Bpo, Metrobank, Etc</option>
                             <option value="Gcash">Gcash</option>
@@ -64,7 +64,7 @@
                 <div class="form-groups">
                     <div class="forms-label">
                         <strong>Mode of Delivery:</strong>
-                        <select name="mod" class="form-input">
+                        <select name="mod" class="form-input" style="width: 25%">
                             <option value="J&T">J&T</option>
                             <option value="Lalamove">Lalamove</option>
                             <option value="Shopee">Shopee</option>

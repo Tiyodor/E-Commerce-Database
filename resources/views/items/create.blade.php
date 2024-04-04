@@ -34,7 +34,7 @@
         <div class="form-groups">
             <div class="forms-label">
                 <strong>Category:</strong>
-                 <select  name="category" class="form-input">
+                 <select  name="category" class="form-input" style="width: 80%">
                     <option value="SD">SD</option>
                     <option value="EG">EG</option>
                     <option value="HG">HG</option>
@@ -45,18 +45,19 @@
                     <option value="1/100">1/100</option>
                   </select>
             </div>
+            <div class="forms-label">
+                <strong>availability:</strong>
+                 <select  name="availability" class="form-input" style="width: 80%">
+                    <option value="Pre-order">Pre-order</option>
+                    <option value="Available">Available</option>
+                  </select>
+                </div>
+
         </div>
         </div>
 
         <div class="right-side">
         <div class="form-groups">
-            <div class="forms-label">
-                <strong>availability:</strong>
-                 <select  name="availability" class="form-input">
-                    <option value="Pre-order">Pre-order</option>
-                    <option value="Available">Available</option>
-                  </select>
-                </div>
 
             <div class="forms-label">
                 <strong>Quantity:</strong>
