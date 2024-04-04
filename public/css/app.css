@@ -17,11 +17,12 @@
 }
 
 body{
-    background-image: url("/bg.jpg");
+    background-image: url("/bg1.jpg");
     background-color: #e6e5c6;
     background-repeat: no-repeat;
     background-size: cover;
     user-select: none;
+    letter-spacing: 2px;
 
     /* overflow: hidden ; */
 
@@ -31,8 +32,8 @@ body{
 .navbar-brand {
     color: #e53e3e;
     text-decoration: none;
-    font-family: "IM Fell Great Primer SC", serif;
-    font-weight: 1000;
+
+    font-weight: 650;
     font-size: 35px;
     font-style: normal;
     letter-spacing: 0.1em;
@@ -42,10 +43,10 @@ body{
     display: flex;
     list-style-type: none;
     margin: 0;
-    text-shadow: 2px 2px 6px #000000;
-    font-family: "Bungee Hairline", sans-serif;
-    color: black;
-    font-weight: 1000;
+    text-shadow: 4px 4px 6px #000000;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: 650;
     font-size: 30px;
     font-style: normal;
     padding: 10px;
@@ -64,7 +65,7 @@ body{
     color: #548ef8;
     font-size: 1.9rem;
     font-family: "MuseoModerno", sans-serif;
-    font-weight: 1000;
+    font-weight: 650;
     -webkit-text-stroke: 1.5px #000000;
 }
 
@@ -81,8 +82,8 @@ body{
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     transition: background-color 0.3s ease;
     text-decoration: none;
@@ -104,8 +105,8 @@ body{
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     transition: background-color 0.3s ease;
     text-decoration: none;
@@ -117,7 +118,7 @@ body{
 }
 
 .item-table {
-    background-color: rgba(43, 32, 5, 0.788);
+    background-color: rgba(0, 0, 0, 0.89);
     box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
     margin: 5px;
     padding: 5px;
@@ -129,8 +130,8 @@ body{
     width: 100%;
     table-layout: auto;
     color: #fff;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
 }
 
@@ -186,8 +187,8 @@ body{
     background-color: #007bff;
     color: #fff;
     border-radius: 5px;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     text-decoration: none;
     margin: 0 5px;
@@ -199,8 +200,8 @@ body{
 
 button{
     text-align: center;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     border: none;
     box-sizing: content-box;
@@ -210,16 +211,16 @@ button{
 /* login css */
   .login-container {
     width: 600px;
-    height: 500px;
+    height: 650px;
     border-radius: 15px;
     background: rgb(228, 241, 245);
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Center horizontally and vertically */
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
-    margin: 0 auto; /* This will center the container horizontally */
-    margin-top: 50px; /* Adjust margin top to provide space for the header */
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .reg-container {
@@ -229,11 +230,11 @@ button{
     background: rgb(247, 243, 243);
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Center horizontally and vertically */
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
-    margin: 0 auto; /* This will center the container horizontally */
-    margin-top: 50px; /* Adjust margin top to provide space for the header */
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 
@@ -244,7 +245,7 @@ button{
     text-align: center;
     border-radius: 15px 15px 0px 0px;
     padding: 10px;
-    margin-bottom: 20px; /* Added margin bottom to provide space below the header */
+    margin-bottom: 20px;
 }
 
 .form-group {
@@ -255,15 +256,15 @@ button{
 }
 
 .form-label {
-    display: block; /* Ensure labels are displayed as block elements */
+    display: block;
     font-size: 20px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 5px; /* Add margin bottom for spacing between label and input */
+    margin-bottom: 5px;
 }
 
 .form-input {
-    width: calc(100% - 20px); /* Adjust width to accommodate padding and border */
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -271,7 +272,7 @@ button{
 }
 
 .search-input{
-    width: 500px; /* Adjust width to accommodate padding and border */
+    width: 650px;
     padding: 10px;
     height: 30px;
     border: 1px solid #ccc;
@@ -280,7 +281,7 @@ button{
 }
 
 .login-input {
-    width: calc(100% - 20px); /* Adjust width to accommodate padding and border */
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -302,8 +303,8 @@ button{
     background-color: #007bff;
     color: #fff;
     border-radius: 5px;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     text-decoration: none;
     width: 80px;
@@ -320,12 +321,12 @@ button{
 
 
 .form-container{
-    background-color: rgba(15, 11, 2, 0.555);
+    background-color: rgba(0, 0, 0, 0.89);
     box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
     margin: 5px;
     padding: 5px;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     text-decoration: none;
     color: white;
@@ -339,11 +340,11 @@ button{
 
 
 .forms-label {
-    display: block; /* Ensure labels are displayed as block elements */
+    display: block;
     font-size: 20px;
     font-weight: bold;
     color: #ffffff;
-    margin-bottom: 5px; /* Add margin bottom for spacing between label and input */
+    margin-bottom: 5px;
 }
 
 
@@ -359,8 +360,8 @@ button{
     box-shadow: 0 2px 4px rgba(236, 168, 222, 0.562);
     margin: 5px;
     padding: 5px;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     text-decoration: none;
     color: white;
@@ -465,15 +466,15 @@ button{
 
 
 .left-side, .right-side {
-    width: 45%; /* Adjust as needed */
+    width: 45%;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
     color: white;
     padding: 14px 25px;
     text-align: center;
-    font-family: "Bungee Hairline", sans-serif;
-    font-weight: 1000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
     font-style: normal;
     text-decoration: none;
     display: inline-block;
@@ -493,18 +494,18 @@ button{
   }
 
   .dropdown{
-    font-family: "Bungee Hairline", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
-    font-weight: 1000;
+    font-weight: 650;
     font-style: normal;
     background-color: transparent;
     color: white;
     border: none;
   }
   .dropdown option{
-    font-family: "Bungee Hairline", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
-    font-weight: 1000;
+    font-weight: 650;
     font-style: normal;
     background-color: transparent;
     color: black;

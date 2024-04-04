@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->paginate(7);
+        $orders = Order::latest()->paginate(10);
 
         return view('order.orders', compact('orders'))
             ->with('i', (request()->input('page', 1) - 1) * 7);

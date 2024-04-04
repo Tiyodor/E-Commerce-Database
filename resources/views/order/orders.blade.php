@@ -60,9 +60,10 @@
 
                             <a class="btn {{ $order->status === 'ofd' ? 'disabled' : '' }}" href="{{ $order->status === 'processing' ? route('order.edit', $order->id) : '#' }}">Edit</a>
 
-                            <button type="submit" class="btn ">Delivered</button>
+                            <button type="submit" class="btn" {{ $order->status === 'processing' ? 'disabled' : '' }} >Delivered</button>
                         </form>
                     </td>
+
 
                 </td>
             </tr>

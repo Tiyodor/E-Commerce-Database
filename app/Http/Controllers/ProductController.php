@@ -15,8 +15,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $response = Http::get('https://jsonplaceholder.typicode.com/posts');
-        $posts = $response->json();
         $products = Product::latest()->paginate(4);
 
         return view('items.index', compact('products'))
