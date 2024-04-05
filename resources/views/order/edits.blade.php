@@ -33,13 +33,13 @@
                     @endforeach
                 </div>
             </div>
-
+{{--
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Total:</strong>
                     <div id="total_{{ $order->id }}" > {{ $order->total }}</</div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-groups">
                 <div class="forms-label">
@@ -80,7 +80,7 @@
         </div>
     </form>
 </div>
-
+{{--
 
 <script>
 
@@ -92,7 +92,8 @@
         document.getElementById('total_{{ $order->id }}').innerHTML = 'Php ' + total_{{ $order->id }}.toFixed(2);
     @endforeach
 
-</script>
+</script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     function cancelOrder() {

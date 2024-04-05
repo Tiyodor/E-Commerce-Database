@@ -12,7 +12,7 @@
   </div>
 
 
-<form action="{{ route('items.update' ,$product->id)}}" method="POST" enctype="multipart/form-data">
+<form id="editForm" action="{{ route('items.update' ,$product->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -94,21 +94,24 @@
         </div>
 
         <div class="form-group text-center" >
-            <button type="submit" class="btn">Submit</button>
+            <button id="submitButton" type="submit" class="btn">Submit</button>
         </div>
     </div>
     </div>
 </form>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('submitButton').addEventListener('click', function () {
+        document.getElementById('submitButton').addEventListener('click', function (event) {
+            event.preventDefault();
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You are about to submit the form!",
-                icon: 'warning',
+                icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -121,4 +124,5 @@
         });
     });
 </script>
+
 @endsection
