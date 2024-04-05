@@ -47,6 +47,7 @@
 
 
 
+
     <div class="pagination">
         {!! $users->previousPageUrl() ? '<a href="' . $users->previousPageUrl() . '" class="btn-page">&lt; Previous</a>' : '' !!}
         {!! $users->nextPageUrl() ? '<a href="' . $users->nextPageUrl() . '" class="btn-page">Next &gt;</a>' : '' !!}

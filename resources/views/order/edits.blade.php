@@ -19,9 +19,7 @@
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Name:</strong>
-                    @foreach ($order->products as $product)
-                    {{ $order->name }} <br>
-                    @endforeach
+                    {{ $order->name }}
                 </div>
             </div>
 
@@ -29,22 +27,22 @@
                 <div class="forms-label">
                     <strong>Items:</strong>
                     @foreach ($order->products as $product)
-                    {{ $product->name }} <br>
+                        {{ $product->name }} <br>
                     @endforeach
                 </div>
             </div>
-{{--
+
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Total:</strong>
-                    <div id="total_{{ $order->id }}" > {{ $order->total }}</</div>
+                    <span class="total">Php {{ number_format($order->total, 2) }}</span>
                 </div>
-            </div> --}}
+            </div>
 
             <div class="form-groups">
                 <div class="forms-label">
                     <strong>Status:</strong>
-                        <a value="{{ $order->status }}">{{ $order->status }}</a>
+                    <a value="{{ $order->status }}">{{ $order->status }}</a>
                 </div>
             </div>
 
@@ -72,7 +70,6 @@
                 </div>
             </div>
 
-
             <div class="form-group text-center">
                 <button type="submit" class="btn">Submit</button>
                 <button type="button" class="btn-cancel" onclick="cancelOrder()">Cancel Order</button>
@@ -80,22 +77,24 @@
         </div>
     </form>
 </div>
-{{--
 
-<script>
-
-    @foreach ($orders as $order)
-        var total_{{ $order->id }} = 0;
-        @foreach ($order->products as $product)
-            total_{{ $order->id }} += parseFloat("{{ $product->price }}");
-        @endforeach
-        document.getElementById('total_{{ $order->id }}').innerHTML = 'Php ' + total_{{ $order->id }}.toFixed(2);
-    @endforeach
-
-</script> --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+    function calculateTotal() {
+        var total = 0;
+        @foreach ($order->products as $product)
+            total += parseFloat("{{ $product->price }}");
+        @endforeach
+        return total.toFixed(2);
+    }
+
+    // Update total when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        var totalElement = document.querySelector('.total');
+        totalElement.textContent = 'Php ' + calculateTotal();
+    });
+
     function cancelOrder() {
         Swal.fire({
             title: 'Are you sure?',
@@ -121,30 +120,18 @@
                             'Your order has been cancelled.',
                             'success'
                         );
-                        window.location.href = '{{ route('order.orders') }}';
                     } else {
                         console.error('Failed to cancel order.');
-                        Swal.fire(
-                            'Error!',
-                            'Failed to cancel order.',
-                            'error'
-                        );
-                        window.location.href = '{{ route('order.orders') }}'; // Reroute even if cancellation fails
                     }
+                    window.location.href = '{{ route('order.orders') }}';
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    Swal.fire(
-                        'Error!',
-                        'Failed to cancel order.',
-                        'error'
-                    );
                     window.location.href = '{{ route('order.orders') }}';
                 });
             }
         });
     }
 </script>
-
 
 @endsection

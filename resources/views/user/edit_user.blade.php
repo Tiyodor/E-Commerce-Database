@@ -48,12 +48,7 @@
                 <input class="form-input" style="height:50px" name="email" value="{{$user->email}}" placeholder="Email"></input>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                <input class="form-input" style="height:50px" name="password" value="{{$user->password}}" placeholder="Password"></input>
-            </div>
-        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
     </div>
