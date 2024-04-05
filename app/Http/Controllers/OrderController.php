@@ -190,4 +190,14 @@ class OrderController extends Controller
 
         $this->mount();
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $orders = Order::where('id', 'like', '%'.$search.'%')
+                         ->orWhere('name', 'like', '%'.$search.'%')
+                            ->paginate(10);
+
+        return view('order.orders', compact('orders'));
+    }
 }

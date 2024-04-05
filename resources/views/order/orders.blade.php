@@ -7,9 +7,14 @@
         <div class="navbar-nav">
             <h2>Orders</h2>
         </div>
+        <div class="search-bar">
+            <form action="{{ route('order.search') }}" method="GET">
+                <input type="text" class="search-input" name="search" placeholder="Search products">
+                <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
         <div class="navbar-nav">
             <a class="general-btn" href="create">Add Order</a>
-
             <a class="general-btn" href="history">Delivery History</a>
         </div>
     </div>
@@ -29,11 +34,11 @@
             </tr>
         </thead>
         @php $i = 0 @endphp
-
         <tbody>
             @foreach ($orders as $order)
             <tr>
-                <td class="text-center">{{ ++$i }}</td>
+                {{-- <td class="text-center">{{ ++$i }}</td> --}}
+                <td class="text-center">{{ $order->id }}</td>
                 <td class="text-center">{{ $order->name }}</td>
                 <td class="text-center">
                     @foreach ($order->products as $product)
@@ -50,7 +55,7 @@
                         @method('PUT')
                         <select name="status" class="dropdown" onchange="this.form.submit()">
                             <option value="processing" {{ $order->status === 'processing' ? 'selected' : '' }}>Processing</option>
-                            <option value="ofd" {{ $order->status === 'ofd' ? 'selected' : '' }}>OFD (Out for Delivery)</option>
+                            <option value="OFD" {{ $order->status === 'OFD' ? 'selected' : '' }}>OFD (Out for Delivery)</option>
                         </select>
                     </form>
 
@@ -60,7 +65,7 @@
                             @csrf
                             @method('DELETE')
 
-                            <a class="btn {{ $order->status === 'ofd' ? 'disabled' : '' }}" href="{{ $order->status === 'processing' ? route('order.edit', $order->id) : '#' }}">Edit</a>
+                            <a class="btn {{ $order->status === 'OFD' ? 'disabled' : '' }}" href="{{ $order->status === 'processing' ? route('order.edit', $order->id) : '#' }}">Edit</a>
 
                             <button type="submit" class="btn" {{ $order->status === 'processing' ? 'disabled' : '' }} >Delivered</button>
                         </form>

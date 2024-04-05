@@ -66,6 +66,8 @@ Route::resource('products', 'ProductController');
     Route::post('/{order}', [OrderController::class, 'restore'])->name('order.restore')->withTrashed();
     Route::get('history', [OrderController::class, 'retrieveSoftDelete'])->name('order.history');
     Route::delete('/orders/{order}/cancelDestroy', [OrderController::class, 'cancelDestroy'])->name('order.cancelDestroy');
+    Route::get('/search', [OrderController::class, 'search'])->name('order.search');
+
 
     // Route::post('cancel/{order}', [OrderController::class, 'cancel'])->name('order.cancel');
 
