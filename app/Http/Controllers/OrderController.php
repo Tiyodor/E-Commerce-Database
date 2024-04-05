@@ -103,7 +103,6 @@ class OrderController extends Controller
             'mod' => 'required|string',
         ]);
 
-        // Assigning values individually
         $order->payment = $validatedData['payment'];
         $order->mod = $validatedData['mod'];
 

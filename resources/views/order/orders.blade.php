@@ -28,6 +28,8 @@
                 <th class="text-center">Action</th>
             </tr>
         </thead>
+        @php $i = 0 @endphp
+
         <tbody>
             @foreach ($orders as $order)
             <tr>

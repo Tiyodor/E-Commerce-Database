@@ -182,7 +182,7 @@ private function deleteExistingPhoto(Product $product)
         $products = Product::where('name', 'like', '%'.$search.'%')
                             ->orWhere('details', 'like', '%'.$search.'%')
                             ->orWhere('category', 'like', '%'.$search.'%')
-                            ->paginate(4);
+                            ->paginate(5);
 
         return view('items.index', compact('products'));
     }
