@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>GundFactory</title>
+    <title>@yield('title') - GundFactory</title>
     <link rel="icon" type="image/x-icon" href="/logo.ico">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
 
     </nav>
 
-    <div class="">
+    <div class="" style="padding: 0px 7% 0px;margin-top:5vh;">
         @yield('content')
     </div>
 

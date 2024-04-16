@@ -32,13 +32,14 @@
                 <th class="text-center">Action</th>
             </tr>
         </thead>
-        @php $i = 0 @endphp
+        {{-- @php $i = 0 @endphp --}}
         <tbody>
 
             @foreach ($products as $product)
 
             <tr>
-                <td class="text-center">{{ ++$i }}</td>
+                {{-- <td class="text-center">{{ ++$i }}</td> --}}
+                <td class="text-center">{{ $product->id }}</td>
                 <td class="text-center">{{ $product->name }}</td>
                 <td class="text-center">{{ $product->details }}</td>
                 <td class="text-center">{{ $product->category }}</td>

@@ -1,4 +1,6 @@
-@extends('app')
+@extends('app').
+
+@section('title') Item Archives @endsection
 
 @section('content')
 <div class="item-table">
