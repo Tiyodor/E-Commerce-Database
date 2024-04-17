@@ -19,8 +19,6 @@ class ProductController extends Controller
 
         return view('items.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 4);
-
-
     }
 
     /**
@@ -56,7 +54,7 @@ class ProductController extends Controller
         Product::create($input);
 
         return redirect()->route('items.index')
-                        ->with('success', 'Product Created Successfully');
+            ->with('success', 'Product Created Successfully');
     }
 
     /**
@@ -64,7 +62,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-       return view('items.show' ,compact('product'));
+        return view('items.show', compact('product'));
     }
 
     /**
@@ -72,7 +70,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('items.edit',compact('product'));
+        return view('items.edit', compact('product'));
     }
 
     /**
@@ -83,35 +81,35 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, Product $product)
-{
-    $input = $request->all();
+    {
+        $input = $request->all();
 
-    if ($image = $request->file('product_image')) {
-        $destinationPath = 'images/';
-        $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
-        $image->move($destinationPath, $profileImage);
-        $input['product_image'] = $profileImage;
+        if ($image = $request->file('product_image')) {
+            $destinationPath = 'images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalName();
+            $image->move($destinationPath, $profileImage);
+            $input['product_image'] = $profileImage;
 
-        $this->deleteExistingPhoto($product);
-    } else {
-        unset($input['product_image']);
+            $this->deleteExistingPhoto($product);
+        } else {
+            unset($input['product_image']);
+        }
+
+        $product->update($input);
+
+        return redirect()->route('items.index')
+            ->with('success', 'Product updated successfully');
     }
 
-    $product->update($input);
-
-    return redirect()->route('items.index')
-                     ->with('success', 'Product updated successfully');
-}
-
-private function deleteExistingPhoto(Product $product)
-{
-    if ($product->product_image) {
-        $imagePath = public_path('images/') . $product->product_image;
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
+    private function deleteExistingPhoto(Product $product)
+    {
+        if ($product->product_image) {
+            $imagePath = public_path('images/') . $product->product_image;
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
     }
-}
 
 
     /**
@@ -122,7 +120,7 @@ private function deleteExistingPhoto(Product $product)
      */
     public function destroy(Product $product)
     {
-        if($product->trashed()){
+        if ($product->trashed()) {
             $product->forceDelete();
             $this->deleteAssociatedPhoto($product);
             return redirect()->route('items.index');
@@ -151,7 +149,7 @@ private function deleteExistingPhoto(Product $product)
         $product->restore();
 
         return redirect()->route('items.index');
-            -with('success', 'Product Restored');
+        -with('success', 'Product Restored');
     }
 
     public function retrieveSoftDeleted()
@@ -179,12 +177,50 @@ private function deleteExistingPhoto(Product $product)
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $products = Product::where('name', 'like', '%'.$search.'%')
-                            ->orWhere('details', 'like', '%'.$search.'%')
-                            ->orWhere('category', 'like', '%'.$search.'%')
-                            ->paginate(5);
+        $products = Product::where('name', 'like', '%' . $search . '%')
+            ->orWhere('details', 'like', '%' . $search . '%')
+            ->orWhere('category', 'like', '%' . $search . '%')
+            ->paginate(5);
 
         return view('items.index', compact('products'));
     }
+
+
+    public function homeProducts()
+    {
+        $products = Product::inRandomOrder()->take(15)->get();
+        $products->transform(function ($product) {
+            $product->product_image = url('/images/' . $product->product_image);
+            return $product;
+        });
+        return response()->json($products);
+    }
+
+
+    public function shopProducts()
+    {
+
+        $products = Product::inRandomOrder()->paginate(10)->get();
+        $products->transfrom(function($product){
+            $product->product_image = url('/image/ . $product->product_image');
+            return $product;
+        });
+        return response()->json($products);
+    }
+
+    public function shows($id)
+    {
+        $product = Product::find($id);
+        $product->product_image = url('/images/' . $product->product_image);
+
+        if (!$product) {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
+
+        return response()->json($product);
+    }
+
 
 }
