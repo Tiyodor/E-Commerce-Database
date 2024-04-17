@@ -23,4 +23,4 @@ Route::get('/products/random', [ProductController::class, 'homeProducts']);
 
 Route::get('/products/{id}', [ProductController::class, 'shows']);
 
-Route::get('/products/shop', [ProductController::class, 'shopProducts']);
+Route::get('/shop', [ProductController::class, 'shopView']);

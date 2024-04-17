@@ -197,12 +197,11 @@ class ProductController extends Controller
     }
 
 
-    public function shopProducts()
+     public function shopView()
     {
-
-        $products = Product::inRandomOrder()->paginate(10)->get();
-        $products->transfrom(function($product){
-            $product->product_image = url('/image/ . $product->product_image');
+        $products = Product::inRandomOrder()->take(20)->get();
+        $products->transform(function ($product) {
+            $product->product_image = url('/images/' . $product->product_image);
             return $product;
         });
         return response()->json($products);
