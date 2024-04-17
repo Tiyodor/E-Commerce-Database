@@ -221,5 +221,18 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    // Controller: ProductController.php
+
+public function recommended()
+{
+    $products = Product::inRandomOrder()->limit(5)->get();
+
+    foreach ($products as $product) {
+        $product->product_image = url('/images/' . $product->product_image);
+    }
+
+    return response()->json($products);
+}
+
 
 }

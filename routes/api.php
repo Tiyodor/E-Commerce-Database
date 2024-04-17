@@ -24,3 +24,7 @@ Route::get('/products/random', [ProductController::class, 'homeProducts']);
 Route::get('/products/{id}', [ProductController::class, 'shows']);
 
 Route::get('/shop', [ProductController::class, 'shopView']);
+
+// web.php or api.php
+
+Route::get('/recommended', [ProductController::class, 'recommended']);
