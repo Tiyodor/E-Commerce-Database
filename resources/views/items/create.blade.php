@@ -42,7 +42,7 @@
                     <option value="MG">MG</option>
                     <option value="PG">PG</option>
                     <option value="HI-RES">HI-RES</option>
-                    <option value="1/100">1/100</option>
+                    <option value="1100">1100</option>
                   </select>
             </div>
             <div class="forms-label">

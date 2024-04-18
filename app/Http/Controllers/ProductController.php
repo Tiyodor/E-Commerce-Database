@@ -221,12 +221,54 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    // Controller: ProductController.php
+
+    public function checkout($ids)
+    {
+        $productIds = explode(',', $ids); // Assuming IDs are comma-separated
+
+        $products = [];
+
+        foreach ($productIds as $id) {
+            $product = Product::find($id);
+
+            if ($product) {
+                $product->product_image = url('/images/' . $product->product_image);
+                $products[] = $product;
+            }
+        }
+
+        if (empty($products)) {
+            return response()->json([
+                'message' => 'Products not found'
+            ], 404);
+        }
+
+        return response()->json($products);
+    }
+
 
 public function recommended()
 {
     $products = Product::inRandomOrder()->limit(5)->get();
 
+    foreach ($products as $product) {
+        $product->product_image = url('/images/' . $product->product_image);
+    }
+
+    return response()->json($products);
+}
+
+public function byCategory(Request $request, $category)
+{
+    $search = $request->get('search');
+    $products = Product::where('category', $category);
+
+    if ($search) {
+        $products->where('name', 'like', '%' . $search . '%');
+    }
+
+    // Fetch products and add product image URL
+    $products = $products->get();
     foreach ($products as $product) {
         $product->product_image = url('/images/' . $product->product_image);
     }
