@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,9 @@ Route::get('/shop', [ProductController::class, 'shopView']);
 Route::get('/recommended', [ProductController::class, 'recommended']);
 
 Route::get('/products/category/{category}', [ProductController::class, 'byCategory']);
+
+Route::post('/checkout', [CheckoutController::class, 'store']);
+
+Route::get('/order/success/{checkoutid}', [CheckoutController::class, 'show'] );
+
+// Route::post('/checkoutsum', [CheckoutController::class, 'checksum']);
