@@ -44,7 +44,7 @@ class CheckoutController extends Controller
             'address' => 'required|string',
             'postal' => 'required|regex:/^[0-9]{4}$/',
             'city' => 'required|string',
-            'phone' => 'required|regex:/^[0-9]{11}$/',
+            'phone' => 'required|regex:/^[0-9]{10}$/',
             'products.*' => 'exists:products,id',
             'total' => 'required',
         ]);
@@ -95,19 +95,40 @@ class CheckoutController extends Controller
      * Display the specified resource.
      */
     public function show($checkoutId)
-{
-    // Retrieve checkout details
-    $checkout = Checkout::with('products')->find($checkoutId);
+    {
+        // Retrieve checkout details
+        $checkout = Checkout::with('products')->find($checkoutId);
 
-    if (!$checkout) {
-        return response()->json(['message' => 'Checkout not found'], 404);
+        if (!$checkout) {
+            return response()->json(['message' => 'Checkout not found'], 404);
+        }
+
+        // Transform products data to include image
+        $productsData = $checkout->products->map(function ($product) {
+            return [
+                'id' => $product->id,
+                'category' => $product->category,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image' => url('/images/' . $product->product_image), // Assuming product_image is the column name for the image
+            ];
+        });
+
+        // Return response with checkout and transformed product details
+        return response()->json([
+            'id' => $checkout->id,
+            'email' => $checkout->email,
+            'payment' => $checkout->payment,
+            'fname' => $checkout->fname,
+            'lname' => $checkout->lname,
+            'address' => $checkout->address,
+            'postal' => $checkout->postal,
+            'city' => $checkout->city,
+            'phone' => $checkout->phone,
+            'products' => $productsData, // Use the transformed products data
+            'total' => $checkout->total,
+        ]);
     }
-
-    // Return response with checkout and product details
-    return response()->json([
-        'checkout' => $checkout
-    ]);
-}
 
 
 
