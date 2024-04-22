@@ -44,7 +44,7 @@ class CheckoutController extends Controller
             'address' => 'required|string',
             'postal' => 'required|regex:/^[0-9]{4}$/',
             'city' => 'required|string',
-            'phone' => 'required|regex:/^[0-9]{10}$/',
+            'phone' => 'required|regex:/^[0-9]{11}$/',
             'products.*' => 'exists:products,id',
             'total' => 'required',
         ]);
