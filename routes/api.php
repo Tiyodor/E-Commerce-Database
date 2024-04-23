@@ -26,6 +26,8 @@ Route::get('/products/{id}', [ProductController::class, 'shows']);
 
 Route::get('/products/checkout/{ids}', [ProductController::class, 'checkout']);
 
+Route::get('/products/checkouts/{ids}', [ProductController::class, 'checkout']);
+
 Route::get('/shop', [ProductController::class, 'shopView']);
 
 Route::get('/recommended', [ProductController::class, 'recommended']);
