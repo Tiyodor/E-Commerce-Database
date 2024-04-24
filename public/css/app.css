@@ -464,25 +464,57 @@ button{
 }
 
 
+.rows {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-.left-side, .right-side {
+.left-side,
+.right-side {
     width: 45%;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
     color: white;
-    padding: 14px 25px;
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 650;
     font-style: normal;
     text-decoration: none;
-    display: inline-block;
+    display: relative;
     border-radius: 5px;
 }
 
-.right-side{
-    position: fixed;
+.imageContainer {
+    overflow-y: auto;
+    max-height: 600px; /* Adjust as needed */
+    border-radius: 10px;
+
+}
+
+.imageContainer::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar width */
+    height: 0; /* Remove scrollbar height */
+}
+
+img {
+    width: 100%; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .left-side,
+    .right-side {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-side,
+    .right-side {
+        width: 100%;
+    }
 }
 
 .pulse {
@@ -511,3 +543,5 @@ button{
     color: black;
     border: none;
   }
+
+

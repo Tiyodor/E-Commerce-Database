@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
-
-
-
+use Psy\VersionUpdater\Checker;
 
 class CheckoutController extends Controller
 {
@@ -20,12 +18,25 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        //
+        $checkouts = Checkout::latest()->paginate(10);
+
+        return view('checkout.index', compact('checkouts'))
+            ->with('i', (request()->input('page', 1) - 1) * 7);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
+
+
+    public function showCheckout(Checkout $checkout)
+    {
+        $checkouts = Checkout::latest()->paginate(3);
+
+        return view('checkout.show', compact('checkout', 'checkouts'));
+    }
+
     public function create()
     {
         //
@@ -83,7 +94,7 @@ class CheckoutController extends Controller
             }
 
             DB::commit();
-            return response()->json(['message' => 'Order successfully placed','checkout_id' => $checkout->id], 201);
+            return response()->json(['message' => 'Checkout successfully placed','checkout_id' => $checkout->id], 201);
         } catch (Exception $e) {
             DB::rollback();
             Log::debug($e->getMessage());
@@ -129,32 +140,94 @@ class CheckoutController extends Controller
             'total' => $checkout->total,
         ]);
     }
-
-
-
-
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Checkout $checkout)
     {
-        //
+        $products = Product::all();
+
+        return view('checkout.edits' ,compact('checkout', 'checkout'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Checkout $checkout)
     {
-        //
+        $validatedData = $request->validate([
+            'payment' => 'required|string',
+        ]);
+
+        $checkout->payment = $validatedData['payment'];
+
+        $checkout->save();
+
+        return redirect()->route('checkout.index')->with('success', 'Checkout updated successfully.');
+    }
+    public function cancelDestroy(Checkout $checkout)
+    {
+        DB::beginTransaction();
+
+        foreach ($checkout->products as $product) {
+            $product->increment('quantity', 1);
+        }
+
+        $checkout->forceDelete();
+
+        DB::commit();
+
+        return redirect()->route('checkout.index')->with('success', 'Checkout cancellation successful.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Checkout $checkout)
-    {
-        //
-    }
+
+        public function destroy(Checkout $checkout)
+        {
+            if($checkout->trashed()){
+                $checkout->forceDelete();
+                return redirect()->route('checkout.index');
+            }
+
+            $checkout->delete(); // Soft delete
+
+            return redirect()->route('checkout.index')
+                ->with('success', 'Checkout Complete');
+        }
+
+        public function restore(Checkout $checkout, Request $request)
+        {
+            $checkout->restore();
+
+            return redirect()->route('checkout.index');
+        }
+
+        public function retrieveSoftDelete()
+        {
+            $checkouts = Checkout::onlyTrashed()->get(); // Retrieve only soft-deleted products
+
+            return view('checkout.history', compact('checkouts'));
+        }
+
+        /**
+         * Restore the specified soft-deleted resource.
+         *
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
+         */
+        public function restoreSoftDeleted($id)
+        {
+            $checkout = Checkout::onlyTrashed()->findOrFail($id);
+            $checkout->restore(); // Restore the soft-deleted product
+
+            return redirect()->route('checkout.index')->with('success', 'Product restored successfully');
+        }
+
+        public function IncrementQty(Checkout $checkout)
+        {
+            $product = $checkout->product;
+            $checkout->increment('product_quantity', 1);
+            $checkout->update(['product_price'=>$checkout->product_quantity * $product->price]);
+
+            $product->decrement('quantity', 1);
+
+            $this->mount();
+        }
+
 }

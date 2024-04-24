@@ -31,7 +31,7 @@
                     <a class="nav-link" href="{{ route('items.index')}}">Inventory</a>
                 </li>
                 <li class="nav-item grow1">
-                    <a class="nav-link" href="{{ route('order.orders')}}">Orders</a>
+                    <a class="nav-link" href="{{ route('checkout.index')}}">Orders</a>
                 </li>
                 <li class="nav-item grow1">
                     <a class="nav-link" href="{{ route('user.users') }}">Users</a>

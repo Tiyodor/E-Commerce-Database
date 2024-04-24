@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,19 @@ Route::resource('products', 'ProductController');
 
     });
 
+    Route::prefix('checkout')->group(function(){
+        Route::get('checkouts', [CheckoutController::class, 'index'])->name('checkout.index');
+        Route::post('store', [CheckoutController::class, 'store'])->name('checkout.store');
+        Route::get('show/{checkout}', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+        Route::get('edits/{checkout}', [CheckoutController::class, 'edit'])->name('checkout.edit');
+        Route::put('edits/{checkout}', [CheckoutController::class, 'update'])->name('checkout.update');
+        Route::delete('/{checkout}', [CheckoutController::class, 'destroy'])->name('checkout.destroy')->withTrashed();
+        Route::post('/{checkout}', [CheckoutController::class, 'restore'])->name('checkout.restore')->withTrashed();
+        Route::get('history', [CheckoutController::class, 'retrieveSoftDelete'])->name('checkout.history');
+        Route::delete('/checkouts/{checkout}/cancelDestroy', [CheckoutController::class, 'cancelDestroy'])->name('checkout.cancelDestroy');
+        Route::get('/search', [CheckoutController::class, 'search'])->name('checkout.search');
+
+        });
 
     Route::prefix('user')->group(function(){
         // User routes
