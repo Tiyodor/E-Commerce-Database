@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
+use App\Models\Checkout;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +39,7 @@ Route::get('/products/category/{category}', [ProductController::class, 'byCatego
 Route::post('/checkout', [CheckoutController::class, 'store']);
 
 Route::get('/order/success/{checkoutid}', [CheckoutController::class, 'show'] );
+
+Route::get('/search', [ProductController::class, 'searches']);
 
 // Route::post('/checkoutsum', [CheckoutController::class, 'checksum']);

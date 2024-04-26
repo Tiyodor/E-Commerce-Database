@@ -185,6 +185,17 @@ class ProductController extends Controller
         return view('items.index', compact('products'));
     }
 
+    public function searches(Request $request)
+    {
+        $search = $request->get('search');
+        $products = Product::where('name', 'like', '%' . $search . '%')
+            ->orWhere('details', 'like', '%' . $search . '%')
+            ->orWhere('category', 'like', '%' . $search . '%')
+            ->paginate(5);
+
+        return response()->json($products);
+    }
+
 
     public function homeProducts()
     {
@@ -197,7 +208,7 @@ class ProductController extends Controller
     }
 
 
-     public function shopView()
+    public function shopView()
     {
         $products = Product::inRandomOrder()->take(20)->get();
         $products->transform(function ($product) {
@@ -247,34 +258,32 @@ class ProductController extends Controller
     }
 
 
-public function recommended()
-{
-    $products = Product::inRandomOrder()->limit(5)->get();
+    public function recommended()
+    {
+        $products = Product::inRandomOrder()->limit(5)->get();
 
-    foreach ($products as $product) {
-        $product->product_image = url('/images/' . $product->product_image);
+        foreach ($products as $product) {
+            $product->product_image = url('/images/' . $product->product_image);
+        }
+
+        return response()->json($products);
     }
 
-    return response()->json($products);
-}
+    public function byCategory(Request $request, $category)
+    {
+        $search = $request->get('search');
+        $products = Product::where('category', $category);
 
-public function byCategory(Request $request, $category)
-{
-    $search = $request->get('search');
-    $products = Product::where('category', $category);
+        if ($search) {
+            $products->where('name', 'like', '%' . $search . '%');
+        }
 
-    if ($search) {
-        $products->where('name', 'like', '%' . $search . '%');
+        // Fetch products and add product image URL
+        $products = $products->get();
+        foreach ($products as $product) {
+            $product->product_image = url('/images/' . $product->product_image);
+        }
+
+        return response()->json($products);
     }
-
-    // Fetch products and add product image URL
-    $products = $products->get();
-    foreach ($products as $product) {
-        $product->product_image = url('/images/' . $product->product_image);
-    }
-
-    return response()->json($products);
-}
-
-
 }
